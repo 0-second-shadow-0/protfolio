@@ -83,39 +83,44 @@ section {
   }
 }
 
-/* Reset default margin */
-body {
-  margin: 0;
-  height: 100vh;
-  overflow: hidden;
-  background: radial-gradient(circle at center, #4fc3f7 10%, #0288d1 60%, #01579b 100%);
-  position: relative;
-}
-
-/* Ripple layer */
+/* Updated Ripple Layer */
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  /* Center the ripple element */
+  top: 50%;
+  left: 50%;
+  /* Make it a large perfect square based on the longest screen side */
+  width: 200vmax; 
+  height: 200vmax;
+  transform: translate(-50%, -50%);
+  
   pointer-events: none;
   background: repeating-radial-gradient(
     circle at center,
-    rgba(255,255,255,0.35) 0px,
-    rgba(255,255,255,0.35) 2px,
+    rgba(255, 255, 255, 0.4) 0px,
+    rgba(255, 255, 255, 0.1) 2px,
     transparent 4px,
-    transparent 20px
+    transparent 40px /* Increased spacing for a cleaner look */
   );
-  animation: rippleWave 8s linear infinite;
+  /* Add a slight blur to soften the rings like the video */
+  filter: blur(1px); 
+  animation: rippleWave 10s linear infinite;
+  z-index: -1;
 }
 
-/* Animation */
+/* Adjusted Animation */
 @keyframes rippleWave {
   from {
-    transform: scale(2);
+    /* Keep the centering translate while scaling */
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  20% {
     opacity: 1;
   }
   to {
-    transform: scale(4);
+    transform: translate(-50%, -50%) scale(1.2);
     opacity: 0;
   }
 }
