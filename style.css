@@ -105,7 +105,7 @@ body::before {
     transparent 4px,
     transparent 20px
   );
-  animation: rippleWave 4s linear infinite;
+  animation: rippleWave 8s linear infinite;
 }
 
 /* Animation */
