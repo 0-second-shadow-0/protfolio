@@ -82,3 +82,40 @@ section {
     opacity: 0;
   }
 }
+
+/* Reset default margin */
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #4fc3f7 10%, #0288d1 60%, #01579b 100%);
+  position: relative;
+}
+
+/* Ripple layer */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-radial-gradient(
+    circle at center,
+    rgba(255,255,255,0.35) 0px,
+    rgba(255,255,255,0.35) 2px,
+    transparent 4px,
+    transparent 20px
+  );
+  animation: rippleWave 4s linear infinite;
+}
+
+/* Animation */
+@keyframes rippleWave {
+  from {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
