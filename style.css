@@ -14,17 +14,37 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
+  align-items: center;
+  padding: 16px 48px;
   position: sticky;
-  top: 0;
-  background: rgba(15,15,15,0.8);
-  backdrop-filter: blur(10px);
+  top: 12px;
+  margin: 0 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #fff 60%, rgba(255,255,255,0.6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 nav a {
-  margin-left: 20px;
+  margin-left: 28px;
   text-decoration: none;
-  color: #aaa;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 nav a:hover {
@@ -32,30 +52,48 @@ nav a:hover {
 }
 
 main {
-  padding: 60px 40px;
-  max-width: 800px;
+  padding: 80px 48px;
+  max-width: 720px;
   margin: auto;
 }
 
 section {
-  margin-bottom: 80px;
+  margin-bottom: 100px;
+}
+
+section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+section p {
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 16px;
 }
 
 .project {
-  padding: 20px;
-  margin-top: 10px;
-  border: 1px solid #333;
-  transition: transform 0.2s ease;
+  padding: 24px;
+  margin-top: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .project:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .project a {
   color: #6c63ff;
   text-decoration: none;
   font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .project a:hover {
@@ -64,63 +102,72 @@ section {
 
 .project h3 {
   color: #6c63ff;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.project p {
+  margin-bottom: 0;
 }
 
 .project .status {
-  margin-top: 8px;
-  color: #888;
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.4);
   font-style: italic;
+  font-size: 0.875rem;
 }
 
 #desmos-3d {
   width: 100%;
-  height: 500px;
-  border: 1px solid #333;
+  height: 480px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   overflow: hidden;
-  margin-top: 10px;
+  margin-top: 0;
 }
 
 .gol-controls {
   display: flex;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 .gol-controls button {
-  padding: 8px 16px;
-  border: 1px solid #333;
-  border-radius: 8px;
-  background: transparent;
-  color: #eaeaea;
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 500;
   transition: all 0.2s ease;
 }
 
 .gol-controls button:hover {
   background: #6c63ff;
   border-color: #6c63ff;
+  color: #fff;
 }
 
 #gol-canvas {
-  border: 1px solid #333;
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
   cursor: pointer;
   max-width: 100%;
   height: auto;
 }
 
 .yt-link {
-  margin-top: 12px;
-  color: #aaa;
+  margin-top: 16px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.9rem;
 }
 
 .yt-link a {
   color: #6c63ff;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .yt-link a:hover {
@@ -167,10 +214,16 @@ section {
   }
 }
 
-#contact a {
+#contact p,
+#source p {
+  margin-bottom: 10px;
+}
+
+#contact a,
+#source a {
   color: #6c63ff;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 #contact a:hover,
@@ -178,8 +231,9 @@ section {
   text-decoration: underline;
 }
 
-#source a {
-  color: #6c63ff;
-  text-decoration: none;
-  font-weight: 600;
+footer {
+  text-align: center;
+  padding: 40px 48px 60px;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.8rem;
 }
