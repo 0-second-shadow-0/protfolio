@@ -20,31 +20,45 @@ document.addEventListener("click", function (e) {
 // Desmos 3D Water Ripple
 (function() {
   const elt = document.getElementById("desmos-3d");
-  if (!elt || typeof Desmos === "undefined") return;
+  if (!elt) return;
 
-  const calculator = Desmos.Calculator3D(elt, {
-    expressionsCollapsed: true,
-    showGrid: false,
-    showXAxis: false,
-    showYAxis: false,
-    showZAxis: false,
-    brailleMode: false,
-  });
+  function init() {
+    if (typeof Desmos === "undefined") {
+      setTimeout(init, 500);
+      return;
+    }
+    try {
+      const calculator = Desmos.Calculator3D(elt, {
+        expressionsCollapsed: true,
+        showGrid: false,
+        showXAxis: false,
+        showYAxis: false,
+        showZAxis: false,
+        brailleMode: false,
+      });
+      calculator.setExpression({
+        id: "ripple",
+        latex: "z = \\sin\\left(2\\sqrt{x^2 + y^2} - 3t\\right) \\cdot e^{-0.08x^2 - 0.08y^2}",
+      });
+      calculator.setExpression({
+        id: "t",
+        type: "slider",
+        latex: "t",
+        min: "0",
+        max: "10",
+        step: "0.05",
+        loop: true,
+      });
+    } catch (e) {
+      elt.innerHTML = '<p style="padding:20px;color:#888;">3D viewer unavailable</p>';
+    }
+  }
 
-  calculator.setExpression({
-    id: "ripple",
-    latex: "z = \\sin\\left(2\\sqrt{x^2 + y^2} - 3t\\right) \\cdot e^{-0.08x^2 - 0.08y^2}",
-  });
-
-  calculator.setExpression({
-    id: "t",
-    type: "slider",
-    latex: "t",
-    min: "0",
-    max: "10",
-    step: "0.05",
-    loop: true,
-  });
+  if (document.readyState === "complete") {
+    init();
+  } else {
+    window.addEventListener("load", init);
+  }
 })();
 
 // Game of Life 100x100
