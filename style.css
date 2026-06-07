@@ -52,6 +52,66 @@ section {
   transform: translateY(-5px);
 }
 
+.project a {
+  color: #6c63ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.project a:hover {
+  text-decoration: underline;
+}
+
+.project h3 {
+  color: #6c63ff;
+  margin-bottom: 8px;
+}
+
+.project .status {
+  margin-top: 8px;
+  color: #888;
+  font-style: italic;
+}
+
+#desmos-3d {
+  width: 100%;
+  height: 500px;
+  border: 1px solid #333;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.gol-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.gol-controls button {
+  padding: 8px 16px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: transparent;
+  color: #eaeaea;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.gol-controls button:hover {
+  background: #6c63ff;
+  border-color: #6c63ff;
+}
+
+#gol-canvas {
+  border: 1px solid #333;
+  border-radius: 8px;
+  cursor: pointer;
+  max-width: 100%;
+  height: auto;
+}
+
 /* Floating blob */
 .blob {
   position: fixed;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Name</title>
+  <title>SECOND SHADOW</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,7 +11,7 @@
   <div class="blob"></div>
 
   <header>
-    <h1>Your Name</h1>
+    <h1>SECOND SHADOW</h1>
     <nav>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
@@ -22,25 +22,49 @@
   <main>
     <section id="about">
       <h2>About</h2>
-      <p>I build clean and functional web experiences.</p>
+      <p>Aspiring systems engineer specializing in Go, Rust, and Zig. Experienced with containerization and orchestration tools like Docker and Kubernetes. Proficient in observability and monitoring with OpenTelemetry. Passionate about building performant, low-level infrastructure and tooling. Focused on writing clean, concurrent, and memory-safe code. Constantly exploring systems programming and distributed systems. Committed to open-source and developer tooling.</p>
+      <p>Also deeply interested in game development and animation across both 2D and 3D pipelines. Experienced with Unity for game logic and prototyping, Blender for 3D modeling and rigging, and OpenToonz for frame-by-frame 2D animation. Skilled in Krita for digital painting and texture work. Proficient in Premiere Pro and After Effects for video editing and motion graphics. Adept at using Photoshop for asset creation and concept art.</p>
     </section>
 
     <section id="projects">
       <h2>Projects</h2>
-      <div class="project">Project One</div>
-      <div class="project">Project Two</div>
+      <div class="project">
+        <a href="https://email-writer-assistant-alpha.vercel.app" target="_blank" rel="noopener noreferrer">Email Writer Assistant</a>
+        <p>Leverages LLMs to generate contextually aware email drafts from minimal input. Handles tricky edge cases like ambiguous tone detection, multi-language requests, and extremely long email threads that exceed token limits. Carefully balances response quality with latency using prompt chaining and streaming for a smooth experience.</p>
+      </div>
+      <div class="project">
+        <h3>ultra-bDB</h3>
+        <p>A high-performance embedded database engine written entirely in Go. Provides ACID-compliant transactions with minimal overhead using a custom B-tree implementation. Supports concurrent readers with lock-free reads and is designed for edge devices and microservices needing a lightweight yet reliable data store.</p>
+        <p class="status">* <em>in development</em></p>
+      </div>
+    </section>
+
+    <section id="desmos">
+      <h2>3D Water Ripple</h2>
+      <div id="desmos-3d"></div>
+    </section>
+
+    <section id="game-of-life">
+      <h2>Game of Life</h2>
+      <div class="gol-controls">
+        <button id="gol-toggle">Start</button>
+        <button id="gol-random">Randomize</button>
+        <button id="gol-clear">Clear</button>
+      </div>
+      <canvas id="gol-canvas"></canvas>
     </section>
 
     <section id="contact">
       <h2>Contact</h2>
-      <p>Email: you@example.com</p>
+      <p>Email: omprasadnayak7@gmail.com</p>
     </section>
   </main>
 
   <footer>
-    <p>© 2026</p>
+    <p>© 2026 gleful-alpaca</p>
   </footer>
 
+  <script src="https://www.desmos.com/api/v1.10/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
   <script src="script.js"></script>
 </body>
 </html>
