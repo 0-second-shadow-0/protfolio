@@ -112,6 +112,21 @@ section {
   height: auto;
 }
 
+.yt-link {
+  margin-top: 12px;
+  color: #aaa;
+}
+
+.yt-link a {
+  color: #6c63ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.yt-link a:hover {
+  text-decoration: underline;
+}
+
 /* Floating blob */
 .blob {
   position: fixed;
@@ -127,60 +142,44 @@ section {
   z-index: -1;
 }
 
-/* Ripple effect */
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple 0.6s linear;
-  background: rgba(255,255,255,0.2);
-}
-
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-
-/* Updated Ripple Layer */
-body::before {
-  content: "";
+/* Dreamy purple flare on click */
+.flare {
   position: fixed;
-  /* Center the ripple element */
-  top: 50%;
-  left: 50%;
-  /* Make it a large perfect square based on the longest screen side */
-  width: 200vmax; 
-  height: 200vmax;
-  transform: translate(-50%, -50%);
-  
+  border-radius: 50%;
   pointer-events: none;
-  background: repeating-radial-gradient(
-    circle at center,
-    rgba(255, 255, 255, 0.4) 0px,
-    rgba(255, 255, 255, 0.1) 2px,
-    transparent 4px,
-    transparent 40px /* Increased spacing for a cleaner look */
-  );
-  /* Add a slight blur to soften the rings like the video */
-  filter: blur(1px); 
-  animation: rippleWave 10s linear infinite;
-  z-index: -1;
+  transform: translate(-50%, -50%) scale(0);
+  animation: flareAnim 1.2s ease-out forwards;
+  background: radial-gradient(circle, rgba(180, 130, 255, 0.6), rgba(120, 80, 220, 0.3) 40%, transparent 70%);
+  filter: blur(8px);
 }
 
-/* Adjusted Animation */
-@keyframes rippleWave {
-  from {
-    /* Keep the centering translate while scaling */
-    transform: translate(-50%, -50%) scale(0.5);
+@keyframes flareAnim {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(6);
     opacity: 0;
   }
-  20% {
-    opacity: 1;
-  }
-  to {
-    transform: translate(-50%, -50%) scale(1.2);
-    opacity: 0;
-  }
+}
+
+#contact a {
+  color: #6c63ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#contact a:hover,
+#source a:hover {
+  text-decoration: underline;
+}
+
+#source a {
+  color: #6c63ff;
+  text-decoration: none;
+  font-weight: 600;
 }
