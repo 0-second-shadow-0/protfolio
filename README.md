@@ -45,6 +45,8 @@ python3 -m http.server 8000
 ```
 
 The site is statically deployable to Vercel, Netlify, GitHub Pages, or any static host.
+## Deployed
+https://gleeful-alpaca-b55570.netlify.app
 
 ## License
 
