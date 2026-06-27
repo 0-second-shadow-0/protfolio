@@ -1,83 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SECOND SHADOW</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SECOND SHADOW</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="space-intro">
+            <canvas id="starfield"></canvas>
+            <div class="vignette"></div>
+            <div class="scanlines"></div>
+            <div class="cockpit-frame"></div>
+            <div class="prompt" id="prompt"></div>
+            <div class="controls-hint" id="controls-hint">mouse to steer</div>
+            <div class="asteroid" id="asteroid">
+                <div class="asteroid-glow"></div>
+                <div class="asteroid-core"></div>
+            </div>
+            <div class="project-card" id="project-card">
+                <span class="card-tag">✦ PROJECT 01</span>
+                <h2>EMAIL WRITER<br />ASSISTANT</h2>
+                <p>
+                    API-powered tool that generates context-aware email drafts.
+                    Handles ambiguous tone detection, multi-language input, and
+                    long threads exceeding token limits using prompt chaining
+                    and streaming.
+                </p>
+                <div class="card-links">
+                    <a
+                        href="https://email-writer-assistant-alpha.vercel.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >VIEW LIVE</a
+                    >
+                    <a
+                        href="https://github.com/doomsday-07?tab=repositories"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >SOURCE</a
+                    >
+                </div>
+            </div>
+            <div class="project-card" id="project-card-ink">
+                <span class="card-tag">✦ PROJECT 02</span>
+                <h2>INK APP</h2>
+                <p>
+                    Windows Ink alternative written in Python. A low-latency
+                    digital inking application with pressure sensitivity, layer
+                    support, and customizable brushes for creative workflows.
+                </p>
+                <div class="card-links">
+                    <a href="#" target="_blank" rel="noopener noreferrer"
+                        >VIEW LIVE</a
+                    >
+                    <a href="#" target="_blank" rel="noopener noreferrer"
+                        >SOURCE</a
+                    >
+                </div>
+            </div>
+            <div class="project-card" id="project-card-ultra-bdb">
+                <span class="card-tag">✦ PROJECT 03</span>
+                <h2>ULTRA-bDB</h2>
+                <p>
+                    Embedded database engine in Go with ACID transactions,
+                    custom B-tree, and lock-free concurrent reads. Optimized for
+                    edge devices and microservices.
+                </p>
+                <div class="card-links">
+                    <a
+                        href="https://github.com/doomsday-07?tab=repositories"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >SOURCE</a
+                    >
+                </div>
+                <div class="tictactoe-container">
+                    <h3>TIC-TAC-TOE</h3>
+                    <div class="tictactoe-board" id="ttt-board">
+                        <div class="ttt-cell" data-index="0"></div>
+                        <div class="ttt-cell" data-index="1"></div>
+                        <div class="ttt-cell" data-index="2"></div>
+                        <div class="ttt-cell" data-index="3"></div>
+                        <div class="ttt-cell" data-index="4"></div>
+                        <div class="ttt-cell" data-index="5"></div>
+                        <div class="ttt-cell" data-index="6"></div>
+                        <div class="ttt-cell" data-index="7"></div>
+                        <div class="ttt-cell" data-index="8"></div>
+                    </div>
+                    <div class="ttt-status" id="ttt-status">Your turn (X)</div>
+                    <button class="ttt-reset" id="ttt-reset">↻ NEW GAME</button>
+                </div>
+            </div>
+        </div>
 
-  <div class="blob"></div>
-
-  <header>
-    <h1>SECOND SHADOW</h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section id="about">
-      <h2>About</h2>
-      <p>Aspiring systems engineer specializing in Go, Rust, and Zig. Experienced with Docker, Kubernetes, and OpenTelemetry. Passionate about low-level infrastructure, distributed systems, and developer tooling.</p>
-      <p>Also exploring game development and 2D/3D animation with Unity, Blender, OpenToonz, Krita, Premiere Pro, After Effects, and Photoshop.</p>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="project">
-        <a href="https://email-writer-assistant-alpha.vercel.app" target="_blank" rel="noopener noreferrer">Email Writer Assistant</a>
-        <a href="https://github.com/doomsday-07?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
-        <p>API-powered tool that generates context-aware email drafts. Handled ambiguous tone detection, multi-language input, and long threads exceeding token limits using prompt chaining and streaming.</p>
-      </div>
-      <div class="project">
-        <h3>ultra-bDB</h3>
-        <p>Embedded database engine in Go with ACID transactions, custom B-tree, and lock-free concurrent reads. Optimized for edge devices and microservices.</p>
-        <p class="status">* <em>in development</em></p>
-      </div>
-      <div class="project">
-        <h3>resctl</h3>
-        <p>Rust CLI for real-time system monitoring — memory, disk I/O, GPU VRAM, CPU cache, battery, and power draw. Cross-platform with a live terminal dashboard.</p>
-        <p class="status">* <em>in development</em></p>
-      </div>
-    </section>
-
-    <section id="desmos">
-      <h2>3D Water Ripple</h2>
-      <div id="desmos-3d"></div>
-    </section>
-
-    <section id="game-of-life">
-      <h2>Game of Life</h2>
-      <div class="gol-controls">
-        <button id="gol-toggle">Start</button>
-        <button id="gol-random">Randomize</button>
-        <button id="gol-clear">Clear</button>
-      </div>
-      <canvas id="gol-canvas"></canvas>
-      <p class="yt-link">Game dev &amp; artwork — <a href="https://www.youtube.com/@icepaisi2541" target="_blank" rel="noopener noreferrer">YouTube</a></p>
-    </section>
-
-    <section id="source">
-      <h2>Source</h2>
-      <p>This portfolio is open source — view it on <a href="https://github.com/0-second-shadow-0/protfolio" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>omprasadnayak7@gmail.com</p>
-      <p><a href="https://github.com/0-second-shadow-0" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/om-prasad-nayak-5b713a294/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2026 gleful-alpaca</p>
-  </footer>
-
-  <script src="https://www.desmos.com/api/v1.10/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
-  <script src="script.js"></script>
-</body>
+        <script src="script.js"></script>
+    </body>
 </html>
