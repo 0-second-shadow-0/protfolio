@@ -83,6 +83,18 @@ document.addEventListener('touchmove', (e) => {
   }
 }, { passive: true });
 
+// --- Visitor counter ---
+
+(async () => {
+  try {
+    const res = await fetch('https://api.countapi.xyz/hit/0-second-shadow-0/protfolio-visits');
+    const data = await res.json();
+    document.getElementById('counter-value').textContent = data.value.toLocaleString();
+  } catch {
+    document.getElementById('counter-value').textContent = 'ERR';
+  }
+})();
+
 // --- Prompt sequence ---
 
 setTimeout(() => {
