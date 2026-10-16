@@ -1,5 +1,5 @@
 /**
- * Om Prasad Nayak (@doomsday-07) - Systems & Backend Portfolio
+ * Om Prasad Nayak (@doomsday-07) - Data Analyst & Systems Engineer
  * Core Client Engine: Interactive Terminal, Filtering, Command Palette, Toast Feedback
  */
 
@@ -85,7 +85,7 @@
       const senderEmail = document.getElementById('contact-sender-email')?.value || '';
       const message = document.getElementById('contact-sender-msg')?.value || '';
 
-      const subject = encodeURIComponent(`[Engineering Inquiry] From ${senderName}`);
+      const subject = encodeURIComponent(`[Data / Engineering Opportunity] From ${senderName}`);
       const body = encodeURIComponent(`Hi Om Prasad,\n\n${message}\n\nBest regards,\n${senderName}\n(${senderEmail})`);
       window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
       showToast('Opening default mail client...');
@@ -155,7 +155,7 @@
   });
 
   // ==========================================================================
-  // INTERACTIVE TERMINAL EMULATOR (sysmon / doomsday-07 shell)
+  // INTERACTIVE TERMINAL EMULATOR (Data & Systems Shell)
   // ==========================================================================
   const termOutput = document.getElementById('term-output');
   const termInput = document.getElementById('term-input');
@@ -193,61 +193,62 @@
   const commands = {
     help: () => {
       return `
-<span class="c-cyan">AVAILABLE SUBSYSTEM COMMANDS:</span>
-  <span class="c-yellow">sysinfo</span>      - Inspect node hardware telemetry via sysmon
-  <span class="c-yellow">benchmarks</span>   - Run simulated Redorb-Ranker 100k batch scoring
+<span class="c-cyan">AVAILABLE DATA & SYSTEMS COMMANDS:</span>
+  <span class="c-yellow">sysinfo</span>      - Inspect hardware telemetry & analytical runtime stats
+  <span class="c-yellow">benchmarks</span>   - Run simulated Star Schema SQL aggregation & Go ranker
   <span class="c-yellow">projects</span>     - List all 5 verified repositories on @doomsday-07
-  <span class="c-yellow">skills</span>       - Print architectural competencies matrix
-  <span class="c-yellow">cat education</span>- View university degrees and hackathons
-  <span class="c-yellow">contact</span>      - Output direct communication endpoints
+  <span class="c-yellow">skills</span>       - Print analytical and systems technical matrix
+  <span class="c-yellow">cat education</span>- View chronological degrees and hackathons
+  <span class="c-yellow">contact</span>      - Output communication channels
   <span class="c-yellow">repo &lt;name&gt;</span>  - Open GitHub repository directly
   <span class="c-yellow">clear</span>        - Clear terminal console buffer
-  <span class="c-yellow">uptime</span>       - Print telemetry daemon uptime
+  <span class="c-yellow">uptime</span>       - Print system uptime
 `;
     },
 
     sysinfo: () => {
       return `
-<span class="c-cyan">HOST HARDWARE TELEMETRY (via sysmon):</span>
+<span class="c-cyan">ANALYTICS & HOST RUNTIME (sysmon telemetry):</span>
   <span class="c-dim">Host Platform :</span> macOS / Linux POSIX environment
-  <span class="c-dim">Telemetry Tool:</span> <span class="c-green">sysmon</span> (github.com/doomsday-07/sysmon)
-  <span class="c-dim">Dependencies  :</span> <span class="c-white">Zero third-party packages (Pure Python standard library)</span>
-  <span class="c-dim">CPU Sampling  :</span> 8 Cores active | Load Avg: 0.08, 0.05, 0.02
-  <span class="c-dim">Memory RSS    :</span> 4.12 MB resident footprint
-  <span class="c-dim">Thermal State :</span> 39.4°C Nominal | Fan Speed: 0 RPM (Passive)
-  <span class="c-dim">GPU VRAM / Pwr:</span> Unified Memory Bus | 4.2W System Draw
+  <span class="c-dim">Primary Roles :</span> <span class="c-cyan">Data Analyst, Analytics Engineer, Systems Developer</span>
+  <span class="c-dim">Data Engines  :</span> PostgreSQL 16 | Star Schema Data Marts | DuckDB
+  <span class="c-dim">BI & Viz      :</span> Tableau 2024.1 | Power BI (25+ DAX Measures) | Excel Models
+  <span class="c-dim">Python Stack  :</span> Pandas | NumPy | Scikit-Learn | FastAPI | PyTorch
+  <span class="c-dim">Systems Stack :</span> Go (Pure Stdlib) | C/C++ | Hardware Telemetry (sysmon)
   <span class="c-dim">Status        :</span> <span class="c-green">ONLINE / NOMINAL</span>
 `;
     },
 
     benchmarks: () => {
       setTimeout(() => {
-        appendTermLine('<span class="c-dim">[1/3] Loading Redorb-Ranker engine (Go)...</span>');
+        appendTermLine('<span class="c-dim">[1/2] Executing Star Schema analytical aggregation across 100k rows (respro2)...</span>');
       }, 150);
       setTimeout(() => {
-        appendTermLine('<span class="c-dim">[2/3] Streaming and scoring 100,000 JSONL candidate records...</span>');
+        appendTermLine('<span class="c-green">✓ Star Schema Query: GMROI & 14-day Rolling Z-Scores computed in 0.041s (PostgreSQL CTEs).</span>');
       }, 350);
       setTimeout(() => {
+        appendTermLine('<span class="c-dim">[2/2] Streaming and ranking 100,000 JSONL candidates via Redorb-Ranker (Go)...</span>');
+      }, 500);
+      setTimeout(() => {
         appendTermLine(`
-<span class="c-green">REDORB-RANKER EXECUTION SUMMARY:</span>
-  <span class="c-dim">Total Profiles:</span> 100,000 candidate records
-  <span class="c-dim">Duration      :</span> <span class="c-cyan">0.384 seconds</span> (High-throughput Go pipeline)
-  <span class="c-dim">Throughput    :</span> <span class="c-green">260,416 profiles / sec</span>
-  <span class="c-dim">Dependencies  :</span> <span class="c-white">0 third-party packages (Pure Go stdlib)</span>
-  <span class="c-dim">Output File   :</span> <span class="c-cyan">SlEePeR_cElL.csv generated</span>
+<span class="c-green">BENCHMARK EXECUTION SUMMARY:</span>
+  <span class="c-dim">Dataset Scale :</span> 100,000+ Transactions & Candidate Records
+  <span class="c-dim">Go Ranking Run:</span> <span class="c-cyan">0.384 seconds</span> (260,416 profiles / sec)
+  <span class="c-dim">Churn Model   :</span> <span class="c-green">86% Recall</span> on High-Risk Attrition Identification
+  <span class="c-dim">Dependencies  :</span> Zero third-party packages in Go ranker & sysmon CLI
 `);
-      }, 650);
-      return '<span class="c-yellow">Initializing Redorb-Ranker high-throughput benchmark...</span>';
+      }, 750);
+      return '<span class="c-yellow">Initializing Analytics & Systems benchmark test...</span>';
     },
 
     projects: () => {
       return `
-<span class="c-cyan">REPOSITORIES ON GITHUB (@doomsday-07):</span>
-  1. <span class="c-white">sysmon</span>                        [Python] - Lightweight cross-platform system monitor CLI (zero deps)
-  2. <span class="c-white">Redorb-Ranker</span>                 [Go]     - 100k candidate ranking system for India Runs Challenge
-  3. <span class="c-white">respro2</span>                       [Python] - Real-time sales BI & inventory anomaly detection platform
-  4. <span class="c-white">ecommerce-retention-analytics</span> [Python] - Customer segmentation, cohort LTV & 86% recall churn model
-  5. <span class="c-white">ink-app</span>                       [Python] - Digital inking app with ML handwriting recognition
+<span class="c-cyan">ACTIVE REPOSITORIES ON GITHUB (@doomsday-07):</span>
+  1. <span class="c-white">respro2</span>                       [Python/SQL] - Real-time Retail BI, Star Schema, GMROI & Anomaly Detection
+  2. <span class="c-white">ecommerce-retention-analytics</span> [Python/PBI] - 100k+ Transaction RFM Segmentation, 25+ DAX, 86% Recall Churn
+  3. <span class="c-white">Redorb-Ranker</span>                 [Go]         - 100k candidate ranker in pure Go for India Runs Challenge
+  4. <span class="c-white">sysmon</span>                        [Python]     - Cross-platform system telemetry monitor (zero external deps)
+  5. <span class="c-white">ink-app</span>                       [Python/ML]  - Low-latency digital inking with ML handwriting OCR pipeline
 
 <span class="c-dim">GitHub Profile: </span><a href="https://github.com/doomsday-07" target="_blank" class="c-cyan">https://github.com/doomsday-07</a>
 `;
@@ -256,24 +257,30 @@
     skills: () => {
       return `
 <span class="c-cyan">TECHNICAL ARSENAL:</span>
-  • <span class="c-white">Systems:</span> Go (Concurrency, Goroutines), Python (Standard Library, Async), C/C++
-  • <span class="c-white">DevOps:</span>  Docker, Docker Compose, Linux internals (Sysfs/Procfs), Hardware Telemetry
-  • <span class="c-white">Data:</span>    PostgreSQL, SQL, ETL Pipelines, Real-Time BI Dashboards, Tableau, Excel
-  • <span class="c-white">ML & AI:</span> PyTorch, Transformers, Scikit-Learn (86% Recall Churn Modeling), OCR
+  • <span class="c-white">Data Analytics & BI :</span> Advanced SQL (CTEs, Window Functions), PostgreSQL, Star Schema,
+                          Power BI (25+ DAX Measures), Tableau, Excel (openpyxl/xlsxwriter),
+                          RFM Segmentation, Cohort Retention Curves, Retail KPIs (GMROI, Sell-Through)
+  • <span class="c-white">Machine Learning    :</span> Scikit-Learn (Logistic Regression, Random Forest, 86% Recall Churn),
+                          Pandas, NumPy, EDA, PyTorch, Optical Character Recognition
+  • <span class="c-white">Systems & Software  :</span> Go (Concurrency, Goroutines, Channels, Zero-Deps), Python (Stdlib),
+                          High-Throughput Streaming, C/C++, Hardware Telemetry (sysmon)
+  • <span class="c-white">Cloud & ETL         :</span> Python ETL Pipelines, FastAPI, Docker, Docker Compose, Linux internals
 `;
     },
 
     'cat education': () => {
       return `
-<span class="c-cyan">ACADEMIC & HACKATHON CREDENTIALS:</span>
-  • <span class="c-white">B.Tech in Computer Science & Engineering</span> (2023 - 2027)
-    Silicon Institute Of Technology, Sambalpur | CGPA: 7.14
-  • <span class="c-white">India Runs Data & AI Challenge (2026)</span>
-    Team SlEePeR_cElL | Engineered Redorb-Ranker in Go
-  • <span class="c-white">5-Day AI Agents Intensive Program (2026)</span>
-    Google Vibe Coding & Autonomous Agentic Pipelines
-  • <span class="c-white">D.A.V. Public School, Paradeep</span>
-    +2 Science (72%) | Matriculation (88%)
+<span class="c-cyan">CHRONOLOGICAL JOURNEY & CREDENTIALS:</span>
+  1. <span class="c-white">Secondary School Examination (Matriculation)</span> [2021]
+     D.A.V. Public School, Paradeep | Score: 88%
+  2. <span class="c-white">Higher Secondary (+2 Science)</span> [2021 - 2023]
+     D.A.V. Public School, Paradeep | Score: 72%
+  3. <span class="c-white">B.Tech in Computer Science & Engineering</span> [2023 - 2027 (Expected)]
+     Silicon Institute Of Technology, Sambalpur | CGPA: 7.14
+  4. <span class="c-white">India Runs Data & AI Challenge</span> [2026]
+     Team SlEePeR_cElL | Engineered Redorb-Ranker in Go for Redrob AI
+  5. <span class="c-white">5-Day AI Agents Intensive Program</span> [2026]
+     Google Vibe Coding & Autonomous Agentic Workflows
 `;
     },
 
@@ -461,9 +468,9 @@
     });
   }
 
-  // Console greeting for developers
+  // Developer console badge
   console.log(
-    '%c OPN // doomsday-07 %c Systems & Backend Engineer %c https://github.com/doomsday-07 ',
+    '%c OPN // doomsday-07 %c Data Analyst & Systems Engineer %c https://github.com/doomsday-07 ',
     'background: #00f0ff; color: #000; font-weight: bold; padding: 4px 8px; border-radius: 4px 0 0 4px;',
     'background: #1e293b; color: #f8fafc; padding: 4px 8px;',
     'background: #0f172a; color: #00f0ff; padding: 4px 8px; border-radius: 0 4px 4px 0;'
