@@ -1,0 +1,17 @@
+# System & OS Files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Documents & Sensitive files
+*.pdf
+*resume*
+*.key
+
+# Local environments and logs
+*.log
+.env
+.venv/
+node_modules/
+dist/

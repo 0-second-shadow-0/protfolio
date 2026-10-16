@@ -1,108 +1,969 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>SECOND SHADOW</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <div id="space-intro">
-            <canvas id="starfield"></canvas>
-            <div class="vignette"></div>
-            <div class="scanlines"></div>
-            <div class="cockpit-frame"></div>
-            <div class="prompt" id="prompt"></div>
-            <div class="visitor-counter">
-                <span class="counter-label">VISITORS</span>
-                <span class="counter-value" id="counter-value">--</span>
-            </div>
-            <div class="controls-hint" id="controls-hint">mouse to steer</div>
-            <div class="asteroid" id="asteroid">
-                <div class="asteroid-glow"></div>
-                <div class="asteroid-core"></div>
-            </div>
-            <div class="project-card" id="project-card">
-                <span class="card-tag">✦ PROJECT 01</span>
-                <h2>EMAIL WRITER<br />ASSISTANT</h2>
-                <p>
-                    API-powered tool that generates context-aware email drafts.
-                    Handles ambiguous tone detection, multi-language input, and
-                    long threads exceeding token limits using prompt chaining
-                    and streaming.
-                </p>
-                <div class="card-links">
-                    <a
-                        href="https://email-writer-assistant-alpha.vercel.app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        >VIEW LIVE</a
-                    >
-                    <a
-                        href="https://github.com/doomsday-07?tab=repositories"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        >SOURCE</a
-                    >
-                </div>
-            </div>
-            <div class="project-card" id="project-card-ink">
-                <span class="card-tag">✦ PROJECT 02</span>
-                <h2>INK APP</h2>
-                <p>
-                    Windows Ink alternative written in Python. A low-latency
-                    digital inking application with pressure sensitivity, layer
-                    support, and customizable brushes for creative workflows.
-                </p>
-                <div class="card-links">
-                    <a href="#" target="_blank" rel="noopener noreferrer"
-                        >VIEW LIVE</a
-                    >
-                    <a href="#" target="_blank" rel="noopener noreferrer"
-                        >SOURCE</a
-                    >
-                </div>
-            </div>
-            <div class="project-card" id="project-card-ultra-bdb">
-                <span class="card-tag">✦ PROJECT 03</span>
-                <h2>ULTRA-bDB</h2>
-                <p>
-                    Embedded database engine in Go with ACID transactions,
-                    custom B-tree, and lock-free concurrent reads. Optimized for
-                    edge devices and microservices.
-                </p>
-                <div class="card-links">
-                    <a
-                        href="https://github.com/doomsday-07?tab=repositories"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        >SOURCE</a
-                    >
-                </div>
-                <div class="tictactoe-container">
-                    <h3>TIC-TAC-TOE</h3>
-                    <div class="tictactoe-board" id="ttt-board">
-                        <div class="ttt-cell" data-index="0"></div>
-                        <div class="ttt-cell" data-index="1"></div>
-                        <div class="ttt-cell" data-index="2"></div>
-                        <div class="ttt-cell" data-index="3"></div>
-                        <div class="ttt-cell" data-index="4"></div>
-                        <div class="ttt-cell" data-index="5"></div>
-                        <div class="ttt-cell" data-index="6"></div>
-                        <div class="ttt-cell" data-index="7"></div>
-                        <div class="ttt-cell" data-index="8"></div>
-                    </div>
-                    <div class="ttt-status" id="ttt-status">Your turn (X)</div>
-                    <button class="ttt-reset" id="ttt-reset">↻ NEW GAME</button>
-                </div>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Om Prasad Nayak | Systems & Backend Engineer (@doomsday-07)</title>
+  <meta name="description" content="Portfolio of Om Prasad Nayak (@doomsday-07) - Systems & Backend Engineer specializing in Rust, Go, Concurrency Primitives, Telemetry, and Machine Learning Pipelines." />
+  <meta name="keywords" content="Om Prasad Nayak, doomsday-07, Systems Engineer, Backend Engineer, Rust, Go, Concurrency, Telemetry, Linux, ultra-bDB, resctl, sysmon, ink-app" />
+  <meta name="author" content="Om Prasad Nayak" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Om Prasad Nayak | Systems & Backend Engineer" />
+  <meta property="og:description" content="Low-overhead distributed tools, lock-free concurrency engines, and real-time telemetry systems in Rust, Go, and Python." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://github.com/doomsday-07" />
+
+  <!-- Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-obsidian">
+  <!-- Subtle Background Grid & Glow -->
+  <div class="ambient-grid"></div>
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-middle"></div>
+
+  <!-- Command Palette / Search Modal (Hidden by default) -->
+  <div id="cmd-palette-backdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="cmd-palette" role="dialog" aria-modal="true" aria-label="Command Palette">
+      <div class="cmd-input-wrap">
+        <svg class="cmd-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="cmd-input" placeholder="Type a command or navigate... (e.g. 'sysmon', 'projects', 'email')" autocomplete="off" />
+        <span class="cmd-badge">ESC to close</span>
+      </div>
+      <div class="cmd-results" id="cmd-results">
+        <div class="cmd-group-label">Quick Actions</div>
+        <div class="cmd-item" data-action="goto-systems"><span class="cmd-item-icon">⚡</span><span>Browse Engineering Systems</span><span class="cmd-shortcut">G S</span></div>
+        <div class="cmd-item" data-action="open-terminal"><span class="cmd-item-icon">>_</span><span>Focus Interactive Terminal</span><span class="cmd-shortcut">G T</span></div>
+        <div class="cmd-item" data-action="goto-simulator"><span class="cmd-item-icon">🌳</span><span>B-Tree Engine Simulator</span><span class="cmd-shortcut">G B</span></div>
+        <div class="cmd-item" data-action="copy-email"><span class="cmd-item-icon">✉️</span><span>Copy Email (omprasadnayak7@gmail.com)</span><span class="cmd-shortcut">C E</span></div>
+        <div class="cmd-item" data-action="open-github"><span class="cmd-item-icon">🐙</span><span>Visit GitHub Profile (@doomsday-07)</span><span class="cmd-shortcut">G H</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="site-header" id="header">
+    <div class="header-inner container">
+      <a href="#hero" class="brand-link" aria-label="Om Prasad Nayak Home">
+        <span class="brand-code">OPN</span>
+        <span class="brand-divider">/</span>
+        <span class="brand-handle">doomsday-07</span>
+        <span class="system-status-indicator" title="Telemetry daemon operational">
+          <span class="status-dot"></span>
+          <span class="status-text">SYS_OK</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" id="nav-menu">
+        <a href="#about" class="nav-link">Overview</a>
+        <a href="#systems" class="nav-link">Systems</a>
+        <a href="#terminal" class="nav-link">Terminal</a>
+        <a href="#simulator" class="nav-link">B-Tree Sim</a>
+        <a href="#skills" class="nav-link">Arsenal</a>
+        <a href="#journey" class="nav-link">Journey</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="btn-quick-terminal" class="btn-terminal-toggle" title="Toggle interactive terminal (Cmd+K / Ctrl+K)">
+          <span class="term-prompt">&gt;_</span>
+          <span class="term-label">Terminal</span>
+          <kbd class="shortcut-kbd">⌘K</kbd>
+        </button>
+        <a href="https://github.com/doomsday-07" target="_blank" rel="noopener noreferrer" class="btn-github-link" title="GitHub @doomsday-07">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="gh-user">@doomsday-07</span>
+        </a>
+        <button id="mobile-menu-btn" class="mobile-toggle" aria-label="Toggle Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-content">
+        <!-- Status Pill -->
+        <div class="status-pill animate-fade-in">
+          <span class="status-pulse-beacon"></span>
+          <span class="status-pill-text">AVAILABLE FOR SYSTEMS & BACKEND ENGINEERING ROLES</span>
+          <span class="status-pill-tag">B.Tech CSE '27</span>
         </div>
 
-        <script src="script.js"></script>
-    </body>
+        <!-- Headline & Bio -->
+        <h1 class="hero-title animate-fade-in delay-1">
+          Om Prasad Nayak
+        </h1>
+        <p class="hero-role animate-fade-in delay-2">
+          Systems & Backend Engineer
+        </p>
+        <p class="hero-summary animate-fade-in delay-3">
+          I build high-performance systems: low-overhead monitoring daemons in <strong>Rust</strong>, lock-free concurrency engines in <strong>Go</strong>, and distributed telemetry & predictive analytics pipelines in <strong>Python</strong>.
+        </p>
+
+        <!-- CTAs -->
+        <div class="hero-actions animate-fade-in delay-4">
+          <a href="#systems" class="btn btn-primary">
+            <span>Explore Engineering Systems</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#terminal" class="btn btn-secondary">
+            <span class="btn-prompt">&gt;_</span>
+            <span>Launch TUI Terminal</span>
+          </a>
+          <button id="hero-copy-email" class="btn btn-ghost" title="Copy omprasadnayak7@gmail.com">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span class="btn-email-text">Copy Email</span>
+          </button>
+        </div>
+
+        <!-- Systems Metrics Strip -->
+        <div class="metrics-grid animate-fade-in delay-5">
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-badge-label">TELEMETRY FOOTPRINT</span>
+              <span class="metric-chip chip-rust">Rust</span>
+            </div>
+            <div class="metric-value">&lt; 5 MB</div>
+            <div class="metric-desc">Peak resident set memory (RSS) in continuous monitoring mode with zero-jitter polling.</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-badge-label">CONCURRENCY PRIMITIVE</span>
+              <span class="metric-chip chip-go">Go</span>
+            </div>
+            <div class="metric-value">Lock-Free</div>
+            <div class="metric-desc">Concurrent read path in custom B-Tree storage engine verified safe under <code>go test -race</code>.</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-badge-label">CHURN DETECTION MODEL</span>
+              <span class="metric-chip chip-py">Python</span>
+            </div>
+            <div class="metric-value">86% Recall</div>
+            <div class="metric-desc">Predictive customer retention & lifetime value modeling over high-dimensional retail datasets.</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-badge-label">DIGITAL INK LATENCY</span>
+              <span class="metric-chip chip-ml">PyTorch</span>
+            </div>
+            <div class="metric-value">&lt; 16 ms</div>
+            <div class="metric-desc">Pressure-sensitive pen loop paired with fine-tuned EasyOCR transformer pipeline.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview / About Section -->
+    <section class="section-container" id="about">
+      <div class="container">
+        <div class="section-badge">ABOUT & PHILOSOPHY</div>
+        <h2 class="section-heading">Architected from first principles.</h2>
+        <p class="section-subtext">
+          I'm a computer science undergrad at Silicon Institute of Technology with a deep interest in systems architecture, memory safety, concurrency, and real-time observability.
+        </p>
+
+        <div class="philosophy-grid">
+          <div class="philosophy-card">
+            <div class="phil-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3>Low-Overhead Engineering</h3>
+            <p>Every allocation counts. When engineering daemons like <code>resctl/sysmon</code>, I optimize data pipelines directly over <code>sysfs</code> and hardware telemetry without heavy runtime dependencies.</p>
+          </div>
+
+          <div class="philosophy-card">
+            <div class="phil-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+            </div>
+            <h3>Concurrency & Storage Internals</h3>
+            <p>Rather than treating databases as black boxes, I designed <code>ultra-bDB</code> from scratch in Go—implementing ACID properties, page node splits, and lock-free atomic reads with standard library primitives.</p>
+          </div>
+
+          <div class="philosophy-card">
+            <div class="phil-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <h3>Applied Machine Learning</h3>
+            <p>I build ML systems that solve tangible constraints: custom handwriting recognition using fine-tuned Hugging Face Transformers + PyTorch, and customer lifetime value engines with 86% recall.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Terminal Console Section -->
+    <section class="section-container terminal-wrapper-section" id="terminal">
+      <div class="container">
+        <div class="terminal-intro-header">
+          <div>
+            <div class="section-badge">&gt;_ LIVE CLI ENVIRONMENT</div>
+            <h2 class="section-heading">Interactive Telemetry & Shell</h2>
+            <p class="section-subtext">Run commands directly in this simulated telemetry shell to inspect hardware stats, explore repositories, or run live micro-benchmarks.</p>
+          </div>
+          <div class="terminal-help-hint">
+            <span>Quick tip: Try running </span><code>sysinfo</code><span> or </span><code>benchmarks</code>
+          </div>
+        </div>
+
+        <div class="terminal-window" id="terminal-emulator">
+          <!-- Terminal Titlebar -->
+          <div class="terminal-titlebar">
+            <div class="terminal-traffic-lights">
+              <span class="light red" title="Close"></span>
+              <span class="light yellow" title="Minimize"></span>
+              <span class="light green" title="Maximize"></span>
+            </div>
+            <div class="terminal-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              <span>doomsday@carbon-node:~/sysmon (x86_64 / rustc 1.82)</span>
+            </div>
+            <div class="terminal-actions">
+              <button id="term-btn-clear" class="term-action-btn" title="Clear terminal">clear</button>
+            </div>
+          </div>
+
+          <!-- Terminal Output Screen -->
+          <div class="terminal-body" id="term-output">
+            <div class="term-line banner-line">
+              <span class="c-cyan">=== RESCTL / SYSMON TELEMETRY SUBSYSTEM v0.4.2 ===</span>
+            </div>
+            <div class="term-line">
+              <span class="c-dim">Host: </span><span class="c-white">carbon-node.internal</span>
+              <span class="c-dim"> | Kernel: </span><span class="c-green">Linux 6.8.9-arch-zen</span>
+              <span class="c-dim"> | Target: </span><span class="c-cyan">doomsday-07</span>
+            </div>
+            <div class="term-line">
+              <span class="c-dim">Type </span><span class="c-yellow">help</span><span class="c-dim"> for a list of available commands, or click any chip below.</span>
+            </div>
+            <div class="term-spacer"></div>
+          </div>
+
+          <!-- Terminal Input Row -->
+          <div class="terminal-input-row">
+            <span class="term-prompt-symbol">opn@carbon:~$</span>
+            <input type="text" id="term-input" class="term-input" placeholder="Type a command (e.g. sysinfo, projects, benchmarks, contact)..." spellcheck="false" autocomplete="off" />
+            <button id="term-run-btn" class="term-run-btn" title="Execute command">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+
+          <!-- Quick Command Chips -->
+          <div class="terminal-chips">
+            <span class="chips-label">QUICK COMMANDS:</span>
+            <button class="cmd-chip" data-cmd="sysinfo">sysinfo</button>
+            <button class="cmd-chip" data-cmd="benchmarks">benchmarks</button>
+            <button class="cmd-chip" data-cmd="projects">projects</button>
+            <button class="cmd-chip" data-cmd="skills">skills</button>
+            <button class="cmd-chip" data-cmd="cat education">cat education</button>
+            <button class="cmd-chip" data-cmd="contact">contact</button>
+            <button class="cmd-chip" data-cmd="clear">clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Engineering Systems & Case Studies -->
+    <section class="section-container" id="systems">
+      <div class="container">
+        <div class="systems-header-row">
+          <div>
+            <div class="section-badge">PORTFOLIO REPOSITORIES</div>
+            <h2 class="section-heading">Featured Systems & Implementations</h2>
+            <p class="section-subtext">Active codebases from GitHub profile <a href="https://github.com/doomsday-07" target="_blank" rel="noopener noreferrer" class="link-inline">@doomsday-07</a>.</p>
+          </div>
+
+          <!-- Filter Pills -->
+          <div class="filter-pills" id="project-filters">
+            <button class="filter-pill active" data-filter="all">All Systems (6)</button>
+            <button class="filter-pill" data-filter="systems">Rust & Go</button>
+            <button class="filter-pill" data-filter="telemetry">Telemetry & BI</button>
+            <button class="filter-pill" data-filter="ml">AI & Vision</button>
+          </div>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+          <!-- Project 1: sysmon / resctl -->
+          <article class="project-card" data-category="systems telemetry">
+            <div class="card-top">
+              <div class="card-domain">
+                <span class="domain-tag tag-rust">RUST TELEMETRY</span>
+                <span class="card-status status-active">ACTIVE DAEMON</span>
+              </div>
+              <a href="https://github.com/doomsday-07/sysmon" target="_blank" rel="noopener noreferrer" class="card-ext-link" title="View Source on GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+
+            <h3 class="card-title">
+              <a href="https://github.com/doomsday-07/sysmon" target="_blank" rel="noopener noreferrer">sysmon / resctl</a>
+            </h3>
+            <p class="card-pitch">
+              Cross-platform real-time system monitoring CLI and live terminal dashboard engineered for near-zero resource contention.
+            </p>
+
+            <div class="card-specs">
+              <div class="spec-row">
+                <span class="spec-label">Overhead:</span>
+                <span class="spec-val">&lt; 5MB RSS, &lt; 0.05% CPU footprint</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Pipeline:</span>
+                <span class="spec-val">Direct <code>/proc</code> & <code>sysfs</code> ingestion without heavy daemons</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Tracking:</span>
+                <span class="spec-val">CPU cache, thread contention, GPU VRAM, battery health</span>
+              </div>
+            </div>
+
+            <div class="card-stack">
+              <span class="stack-badge">Rust</span>
+              <span class="stack-badge">Sysfs / Procfs</span>
+              <span class="stack-badge">Terminal UI</span>
+              <span class="stack-badge">Low-Overhead</span>
+              <span class="stack-badge">Hardware Telemetry</span>
+            </div>
+
+            <div class="card-footer">
+              <a href="https://github.com/doomsday-07/sysmon" target="_blank" rel="noopener noreferrer" class="btn-card-link">
+                <span>View on GitHub</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+              <button class="btn-card-terminal" data-term-cmd="sysinfo" title="Run sysinfo in terminal">
+                <span>Test in TUI</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Project 2: ultra-bDB & Redorb-Ranker -->
+          <article class="project-card" data-category="systems">
+            <div class="card-top">
+              <div class="card-domain">
+                <span class="domain-tag tag-go">GO STORAGE ENGINE</span>
+                <span class="card-status status-active">ACID COMPLIANT</span>
+              </div>
+              <a href="https://github.com/doomsday-07/Redorb-Ranker" target="_blank" rel="noopener noreferrer" class="card-ext-link" title="View Source on GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+
+            <h3 class="card-title">
+              <a href="https://github.com/doomsday-07/Redorb-Ranker" target="_blank" rel="noopener noreferrer">ultra-bDB & Redorb-Ranker</a>
+            </h3>
+            <p class="card-pitch">
+              Custom B-tree storage engine in Go with ACID transaction semantics, page balancing, and atomic lock-free reads.
+            </p>
+
+            <div class="card-specs">
+              <div class="spec-row">
+                <span class="spec-label">Concurrency:</span>
+                <span class="spec-val">Lock-free reader concurrency, race verified (<code>go test -race</code>)</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Profiling:</span>
+                <span class="spec-val">0-allocation hot paths optimized via <code>runtime/pprof</code></span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Dependencies:</span>
+                <span class="spec-val">Zero third-party packages; pure Go standard library</span>
+              </div>
+            </div>
+
+            <div class="card-stack">
+              <span class="stack-badge">Go</span>
+              <span class="stack-badge">B-Tree Internals</span>
+              <span class="stack-badge">ACID Transactions</span>
+              <span class="stack-badge">pprof Profiling</span>
+              <span class="stack-badge">Concurrent Data Structures</span>
+            </div>
+
+            <div class="card-footer">
+              <a href="https://github.com/doomsday-07/Redorb-Ranker" target="_blank" rel="noopener noreferrer" class="btn-card-link">
+                <span>View on GitHub</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+              <a href="#simulator" class="btn-card-terminal">
+                <span>Inspect B-Tree</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 3: respro2 (Realtime Sales BI) -->
+          <article class="project-card" data-category="telemetry">
+            <div class="card-top">
+              <div class="card-domain">
+                <span class="domain-tag tag-python">REAL-TIME BI & PIPELINES</span>
+                <span class="card-status status-active">PRODUCTION READY</span>
+              </div>
+              <a href="https://github.com/doomsday-07/respro2" target="_blank" rel="noopener noreferrer" class="card-ext-link" title="View Source on GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+
+            <h3 class="card-title">
+              <a href="https://github.com/doomsday-07/respro2" target="_blank" rel="noopener noreferrer">respro2 (Retail BI & Anomaly Detection)</a>
+            </h3>
+            <p class="card-pitch">
+              Real-time sales performance and inventory optimization platform with automated anomaly alerts and live telemetry streaming.
+            </p>
+
+            <div class="card-specs">
+              <div class="spec-row">
+                <span class="spec-label">Streaming:</span>
+                <span class="spec-val">Event-driven inventory ingestion with instant stockout warnings</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Analytics:</span>
+                <span class="spec-val">Multi-dimensional drilldown by store, SKU, and margin</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Detection:</span>
+                <span class="spec-val">Z-Score & moving window anomaly scoring</span>
+              </div>
+            </div>
+
+            <div class="card-stack">
+              <span class="stack-badge">Python</span>
+              <span class="stack-badge">Real-Time BI</span>
+              <span class="stack-badge">Anomaly Detection</span>
+              <span class="stack-badge">High-Throughput</span>
+              <span class="stack-badge">Analytics</span>
+            </div>
+
+            <div class="card-footer">
+              <a href="https://github.com/doomsday-07/respro2" target="_blank" rel="noopener noreferrer" class="btn-card-link">
+                <span>View on GitHub</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 4: ecommerce-retention-analytics -->
+          <article class="project-card" data-category="ml telemetry">
+            <div class="card-top">
+              <div class="card-domain">
+                <span class="domain-tag tag-ml">ML & PREDICTIVE ANALYTICS</span>
+                <span class="card-status status-active">86% RECALL</span>
+              </div>
+              <a href="https://github.com/doomsday-07/ecommerce-retention-analytics" target="_blank" rel="noopener noreferrer" class="card-ext-link" title="View Source on GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+
+            <h3 class="card-title">
+              <a href="https://github.com/doomsday-07/ecommerce-retention-analytics" target="_blank" rel="noopener noreferrer">E-Commerce Retention & LTV Platform</a>
+            </h3>
+            <p class="card-pitch">
+              Customer segmentation, cohort retention curves, and machine learning churn classification modeling with 86% recall.
+            </p>
+
+            <div class="card-specs">
+              <div class="spec-row">
+                <span class="spec-label">Modeling:</span>
+                <span class="spec-val">86% recall on churn prediction to minimize false negatives</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Cohorts:</span>
+                <span class="spec-val">Temporal customer retention decay curves & LTV projections</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Segmentation:</span>
+                <span class="spec-val">Unsupervised RFM clustering & behavioral scoring</span>
+              </div>
+            </div>
+
+            <div class="card-stack">
+              <span class="stack-badge">Python</span>
+              <span class="stack-badge">Scikit-Learn</span>
+              <span class="stack-badge">Cohort Analytics</span>
+              <span class="stack-badge">Churn Modeling</span>
+              <span class="stack-badge">Predictive LTV</span>
+            </div>
+
+            <div class="card-footer">
+              <a href="https://github.com/doomsday-07/ecommerce-retention-analytics" target="_blank" rel="noopener noreferrer" class="btn-card-link">
+                <span>View on GitHub</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 5: ink-app -->
+          <article class="project-card" data-category="ml systems">
+            <div class="card-top">
+              <div class="card-domain">
+                <span class="domain-tag tag-ml">COMPUTER VISION & ML</span>
+                <span class="card-status status-active">SUB-16MS PEN LOOP</span>
+              </div>
+              <a href="https://github.com/doomsday-07/ink-app" target="_blank" rel="noopener noreferrer" class="card-ext-link" title="View Source on GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+
+            <h3 class="card-title">
+              <a href="https://github.com/doomsday-07/ink-app" target="_blank" rel="noopener noreferrer">ink-app (macOS Windows Ink Alternative)</a>
+            </h3>
+            <p class="card-pitch">
+              Low-latency digital inking application in Python with Apple Vision OCR bridge and fine-tuned EasyOCR transformer pipelines.
+            </p>
+
+            <div class="card-specs">
+              <div class="spec-row">
+                <span class="spec-label">Input Latency:</span>
+                <span class="spec-val">Sub-16ms stylus loop with pressure sensitivity & smoothing</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">OCR Pipeline:</span>
+                <span class="spec-val">Custom-trained handwriting recognition on PyTorch / Accelerate</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">OS Bridge:</span>
+                <span class="spec-val">Native macOS Cocoa event loop with custom rasterization</span>
+              </div>
+            </div>
+
+            <div class="card-stack">
+              <span class="stack-badge">Python</span>
+              <span class="stack-badge">PyTorch</span>
+              <span class="stack-badge">Transformers</span>
+              <span class="stack-badge">EasyOCR</span>
+              <span class="stack-badge">macOS AppKit</span>
+            </div>
+
+            <div class="card-footer">
+              <a href="https://github.com/doomsday-07/ink-app" target="_blank" rel="noopener noreferrer" class="btn-card-link">
+                <span>View on GitHub</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 6: Email Writer Assistant -->
+          <article class="project-card" data-category="systems">
+            <div class="card-top">
+              <div class="card-domain">
+                <span class="domain-tag tag-backend">JAVA BACKEND & API</span>
+                <span class="card-status status-active">LIVE PRODUCTION</span>
+              </div>
+              <a href="https://email-writer-assistant-alpha.vercel.app" target="_blank" rel="noopener noreferrer" class="card-ext-link" title="Open Live Web Application">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+
+            <h3 class="card-title">
+              <a href="https://email-writer-assistant-alpha.vercel.app" target="_blank" rel="noopener noreferrer">Email Writer Assistant</a>
+            </h3>
+            <p class="card-pitch">
+              API-driven context-aware email drafting platform built with Spring Boot REST services, prompt chaining, and multilingual support.
+            </p>
+
+            <div class="card-specs">
+              <div class="spec-row">
+                <span class="spec-label">Backend:</span>
+                <span class="spec-val">Robust Spring Boot REST APIs with structured error envelopes</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Chaining:</span>
+                <span class="spec-val">Prompt chaining & streaming response parsing for long threads</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Frontend:</span>
+                <span class="spec-val">Interactive React.js + Vite client with tone selection</span>
+              </div>
+            </div>
+
+            <div class="card-stack">
+              <span class="stack-badge">Java</span>
+              <span class="stack-badge">Spring Boot</span>
+              <span class="stack-badge">REST APIs</span>
+              <span class="stack-badge">React.js</span>
+              <span class="stack-badge">Vite</span>
+            </div>
+
+            <div class="card-footer">
+              <a href="https://email-writer-assistant-alpha.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-card-link">
+                <span>View Live App</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+              <a href="https://github.com/doomsday-07" target="_blank" rel="noopener noreferrer" class="btn-card-terminal">
+                <span>GitHub Repos</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive B-Tree Engine Simulator -->
+    <section class="section-container simulator-section" id="simulator">
+      <div class="container">
+        <div class="sim-header">
+          <div class="section-badge">INTERACTIVE CS LAB</div>
+          <h2 class="section-heading">B-Tree Storage Engine Visualizer</h2>
+          <p class="section-subtext">
+            Inspired by <code>ultra-bDB</code>. Insert keys, trigger page node splits, and run simulated concurrent read threads to witness lock-free index traversal in action.
+          </p>
+        </div>
+
+        <div class="sim-card">
+          <div class="sim-controls-bar">
+            <div class="sim-input-group">
+              <label for="btree-key-input">Key / Record ID:</label>
+              <div class="input-with-btn">
+                <input type="number" id="btree-key-input" placeholder="e.g. 42" min="1" max="999" />
+                <button id="btn-insert-key" class="btn btn-sm btn-primary">Insert Key</button>
+              </div>
+            </div>
+
+            <div class="sim-quick-actions">
+              <button id="btn-sample-tree" class="btn btn-sm btn-ghost">Insert Batch (10, 25, 40, 55, 70)</button>
+              <button id="btn-benchmark-reads" class="btn btn-sm btn-accent">Run Concurrent Read Benchmark</button>
+              <button id="btn-reset-tree" class="btn btn-sm btn-danger">Reset Tree</button>
+            </div>
+          </div>
+
+          <!-- Tree Visual Canvas / Node Display -->
+          <div class="sim-canvas-wrap">
+            <div class="sim-meta-bar">
+              <span id="sim-tree-stats">Nodes: 1 | Depth: 1 | Max Keys/Node: 3 (Order 4)</span>
+              <span id="sim-status-msg" class="sim-status">Ready for input</span>
+            </div>
+
+            <div class="btree-viewport" id="btree-viewport">
+              <!-- Dynamically populated nodes -->
+            </div>
+          </div>
+
+          <!-- Realtime Benchmark Telemetry Box -->
+          <div class="sim-benchmark-box" id="benchmark-results" style="display: none;">
+            <div class="bm-header">
+              <span class="bm-title">⚡ Lock-Free Concurrent Traversal Benchmark (Simulated 100k Lookups)</span>
+              <span class="bm-tag">Zero Contention</span>
+            </div>
+            <div class="bm-grid">
+              <div class="bm-item">
+                <span class="bm-label">Read Ops / sec</span>
+                <span class="bm-val c-green" id="bm-ops">1,480,210</span>
+              </div>
+              <div class="bm-item">
+                <span class="bm-label">Avg Lookup Latency</span>
+                <span class="bm-val c-cyan" id="bm-lat">0.18 µs</span>
+              </div>
+              <div class="bm-item">
+                <span class="bm-label">Mutex Lock Contention</span>
+                <span class="bm-val c-white">0% (Lock-Free Path)</span>
+              </div>
+              <div class="bm-item">
+                <span class="bm-label">Race Condition Status</span>
+                <span class="bm-val c-green">CLEAN (go test -race OK)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Arsenal & Core Competencies -->
+    <section class="section-container" id="skills">
+      <div class="container">
+        <div class="section-badge">TECHNICAL ARSENAL</div>
+        <h2 class="section-heading">Engineered with low overhead in mind.</h2>
+        <p class="section-subtext">No generic percentage bars. Real tools, runtime primitives, and frameworks I use to ship production systems.</p>
+
+        <div class="skills-category-grid">
+          <!-- Pillar 1 -->
+          <div class="skill-category-card">
+            <div class="skill-cat-header">
+              <div class="cat-icon c-rust-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <div>
+                <h3>Systems & Low-Level</h3>
+                <span class="cat-sub">Memory safety, zero-cost abstractions</span>
+              </div>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-pill"><strong>Rust</strong> (Memory Safety, TUI, CLI)</span>
+              <span class="skill-pill"><strong>Go</strong> (Concurrency, Goroutines, Channels)</span>
+              <span class="skill-pill"><strong>Lock-Free Reads</strong> (Atomic pointers)</span>
+              <span class="skill-pill"><strong>B-Tree & Page Cache</strong> (Storage engines)</span>
+              <span class="skill-pill"><strong>C / C++</strong> (Foundations, Pointer Arithmetic)</span>
+              <span class="skill-pill"><strong>runtime/pprof</strong> (CPU & Memory Tracing)</span>
+              <span class="skill-pill"><strong>Linux sysfs/procfs</strong> (Kernel Telemetry)</span>
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="skill-category-card">
+            <div class="skill-cat-header">
+              <div class="cat-icon c-infra-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+              </div>
+              <div>
+                <h3>Cloud, DevOps & Observability</h3>
+                <span class="cat-sub">Distributed telemetry and containerization</span>
+              </div>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-pill"><strong>Docker</strong> (Multi-stage micro images)</span>
+              <span class="skill-pill"><strong>Kubernetes</strong> (Pods, Services, Ingress)</span>
+              <span class="skill-pill"><strong>Terraform</strong> (Infrastructure as Code)</span>
+              <span class="skill-pill"><strong>OpenTelemetry</strong> (Distributed Spans & Metrics)</span>
+              <span class="skill-pill"><strong>Grafana</strong> (Telemetry Dashboards)</span>
+              <span class="skill-pill"><strong>Redis</strong> (In-memory caching & queues)</span>
+              <span class="skill-pill"><strong>Linux Internals</strong> (eBPF telemetry concepts)</span>
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="skill-category-card">
+            <div class="skill-cat-header">
+              <div class="cat-icon c-backend-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+              </div>
+              <div>
+                <h3>Backend & Data Architecture</h3>
+                <span class="cat-sub">ACID guarantees and scalable API services</span>
+              </div>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-pill"><strong>PostgreSQL</strong> (Schema Design, Indexes, CTEs)</span>
+              <span class="skill-pill"><strong>Spring Boot</strong> (Java REST APIs)</span>
+              <span class="skill-pill"><strong>Python</strong> (FastAPI, High-throughput services)</span>
+              <span class="skill-pill"><strong>ACID Transactions</strong> (WAL, Isolation levels)</span>
+              <span class="skill-pill"><strong>Event-Driven Ingestion</strong> (Streaming analytics)</span>
+              <span class="skill-pill"><strong>JSON / Protobuf</strong> (Wire serialization)</span>
+            </div>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="skill-category-card">
+            <div class="skill-cat-header">
+              <div class="cat-icon c-ml-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+              </div>
+              <div>
+                <h3>Applied Machine Learning</h3>
+                <span class="cat-sub">Computer vision, OCR, predictive modeling</span>
+              </div>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-pill"><strong>PyTorch</strong> (Model Training, GPU acceleration)</span>
+              <span class="skill-pill"><strong>Hugging Face Transformers</strong> (Vision & NLP)</span>
+              <span class="skill-pill"><strong>EasyOCR</strong> (Custom Handwriting Fine-tuning)</span>
+              <span class="skill-pill"><strong>Apple Vision Framework</strong> (Native OCR bridge)</span>
+              <span class="skill-pill"><strong>Scikit-Learn</strong> (Churn Classification, 86% Recall)</span>
+              <span class="skill-pill"><strong>Cohort Retention Analytics</strong> (Predictive LTV)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Engineering Journey & Education Timeline -->
+    <section class="section-container" id="journey">
+      <div class="container">
+        <div class="section-badge">TIMELINE & CREDENTIALS</div>
+        <h2 class="section-heading">Engineering Journey</h2>
+        <p class="section-subtext">Academic background, hackathons, and intensive systems programs.</p>
+
+        <div class="timeline-wrap">
+          <!-- Item 1 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2023 — 2027 (Expected)</div>
+            <div class="timeline-content">
+              <div class="timeline-header-row">
+                <h3 class="timeline-title">B.Tech in Computer Science & Engineering</h3>
+                <span class="timeline-badge">CGPA: 7.14</span>
+              </div>
+              <p class="timeline-org">Silicon Institute Of Technology, Sambalpur</p>
+              <p class="timeline-desc">
+                Core coursework in Operating Systems, Database Management Systems, Distributed Computing, Computer Architecture, Data Structures & Algorithms, and Compiler Design.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2026</div>
+            <div class="timeline-content">
+              <div class="timeline-header-row">
+                <h3 class="timeline-title">5-Day AI Agents Intensive Program</h3>
+                <span class="timeline-badge">Google</span>
+              </div>
+              <p class="timeline-org">Google Vibe Coding Intensive</p>
+              <p class="timeline-desc">
+                Deep dive into autonomous agentic workflows, prompt chaining, tool-use execution, multi-agent evaluation frameworks, and context-aware systems engineering.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2026</div>
+            <div class="timeline-content">
+              <div class="timeline-header-row">
+                <h3 class="timeline-title">Hack2Skill India Run Hackathon (2026 Edition)</h3>
+                <span class="timeline-badge">Participant</span>
+              </div>
+              <p class="timeline-org">National Engineering Hackathon</p>
+              <p class="timeline-desc">
+                Rapid prototype development focusing on distributed data processing, real-time analytics, and high-concurrency architecture under tight time constraints.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2021 — 2023</div>
+            <div class="timeline-content">
+              <div class="timeline-header-row">
+                <h3 class="timeline-title">Higher Secondary (+2 Science) & Matriculation</h3>
+                <span class="timeline-badge">72% / 88%</span>
+              </div>
+              <p class="timeline-org">D.A.V. Public School, PPL Township, Paradeep</p>
+              <p class="timeline-desc">
+                Strong focus on mathematics, physics, and foundations of computer science.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Collab Section -->
+    <section class="section-container contact-section" id="contact">
+      <div class="container">
+        <div class="contact-card">
+          <div class="contact-grid">
+            <div class="contact-info">
+              <div class="section-badge">GET IN TOUCH</div>
+              <h2 class="contact-title">Let's build reliable, high-performance systems.</h2>
+              <p class="contact-subtext">
+                Whether you have an opening for a <strong>Systems or Backend Engineer</strong>, want to collaborate on high-concurrency distributed tools, or review my open-source projects, my inbox is open.
+              </p>
+
+              <div class="contact-items">
+                <div class="contact-item">
+                  <div class="contact-item-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  </div>
+                  <div>
+                    <span class="ci-label">DIRECT EMAIL</span>
+                    <a href="mailto:omprasadnayak7@gmail.com" class="ci-value">omprasadnayak7@gmail.com</a>
+                  </div>
+                  <button id="btn-copy-email-card" class="btn-copy-chip" title="Copy to clipboard">
+                    <span class="copy-text">Copy</span>
+                  </button>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-item-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                  </div>
+                  <div>
+                    <span class="ci-label">LINKEDIN</span>
+                    <a href="https://linkedin.com/in/om-prasad-nayak-5b713a294" target="_blank" rel="noopener noreferrer" class="ci-value">linkedin.com/in/om-prasad-nayak-5b713a294</a>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-item-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </div>
+                  <div>
+                    <span class="ci-label">GITHUB PROFILE</span>
+                    <a href="https://github.com/doomsday-07" target="_blank" rel="noopener noreferrer" class="ci-value">github.com/doomsday-07</a>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-item-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  </div>
+                  <div>
+                    <span class="ci-label">LOCATION</span>
+                    <span class="ci-value">Paradeep / Sambalpur, Odisha, India</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Email Compose Helper -->
+            <div class="contact-box-wrap">
+              <div class="quick-mail-card">
+                <div class="qm-header">
+                  <span class="qm-tag">DIRECT MESSAGE</span>
+                  <span class="qm-node">Node: mail-relay-01</span>
+                </div>
+                <form id="quick-contact-form" class="qm-form">
+                  <div class="form-group">
+                    <label for="contact-sender-name">Your Name / Organization</label>
+                    <input type="text" id="contact-sender-name" placeholder="e.g. Alex (Engineering Recruiter / Founder)" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-sender-email">Your Email</label>
+                    <input type="email" id="contact-sender-email" placeholder="alex@company.com" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-sender-msg">Message / Inquiry</label>
+                    <textarea id="contact-sender-msg" rows="4" placeholder="Hi Om Prasad, we have an opening for a Systems / Backend Engineer and loved your work on ultra-bDB and resctl..." required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block">
+                    <span>Send via Default Mail Client</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <span class="footer-brand">Om Prasad Nayak (doomsday-07)</span>
+        <span class="footer-divider">•</span>
+        <span class="footer-copy">© 2026. Architected for speed & efficiency.</span>
+      </div>
+      <div class="footer-center">
+        <span class="footer-tech-stack">Vanilla HTML5 • Modern CSS3 • Pure Vanilla JS • Zero Bloat</span>
+      </div>
+      <div class="footer-right">
+        <a href="#hero" class="back-to-top" title="Back to top">
+          <span>Top</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
 </html>
