@@ -1,6 +1,6 @@
 /**
  * Om Prasad Nayak (@doomsday-07) - Systems & Backend Portfolio
- * Core Client Engine: Interactive Terminal, B-Tree Simulator, Command Palette
+ * Core Client Engine: Interactive Terminal, Filtering, Command Palette, Toast Feedback
  */
 
 (function () {
@@ -155,7 +155,7 @@
   });
 
   // ==========================================================================
-  // INTERACTIVE TERMINAL EMULATOR (resctl / sysmon v0.4.2)
+  // INTERACTIVE TERMINAL EMULATOR (sysmon / doomsday-07 shell)
   // ==========================================================================
   const termOutput = document.getElementById('term-output');
   const termInput = document.getElementById('term-input');
@@ -194,85 +194,84 @@
     help: () => {
       return `
 <span class="c-cyan">AVAILABLE SUBSYSTEM COMMANDS:</span>
-  <span class="c-yellow">sysinfo</span>      - Inspect node hardware telemetry & runtime stats
-  <span class="c-yellow">benchmarks</span>   - Execute simulated lock-free concurrency test
-  <span class="c-yellow">projects</span>     - List featured production codebases & repos
+  <span class="c-yellow">sysinfo</span>      - Inspect node hardware telemetry via sysmon
+  <span class="c-yellow">benchmarks</span>   - Run simulated Redorb-Ranker 100k batch scoring
+  <span class="c-yellow">projects</span>     - List all 5 verified repositories on @doomsday-07
   <span class="c-yellow">skills</span>       - Print architectural competencies matrix
   <span class="c-yellow">cat education</span>- View university degrees and hackathons
   <span class="c-yellow">contact</span>      - Output direct communication endpoints
   <span class="c-yellow">repo &lt;name&gt;</span>  - Open GitHub repository directly
-  <span class="c-yellow">clear</span>        - Clear the terminal console buffer
+  <span class="c-yellow">clear</span>        - Clear terminal console buffer
   <span class="c-yellow">uptime</span>       - Print telemetry daemon uptime
 `;
     },
 
     sysinfo: () => {
       return `
-<span class="c-cyan">HOST ARCHITECTURE TELEMETRY:</span>
-  <span class="c-dim">Hardware Node :</span> x86_64 / Apple Silicon Unified Architecture
-  <span class="c-dim">Kernel / OS   :</span> Darwin 24.3 / Linux 6.8.9-zen (POSIX compliant)
-  <span class="c-dim">Telemetry RSS :</span> <span class="c-green">4.28 MB</span> (Low-overhead resctl daemon)
-  <span class="c-dim">CPU Sampling  :</span> 0.02% overhead over continuous polling
-  <span class="c-dim">Runtimes      :</span> rustc 1.82-nightly | go 1.22.4 | python 3.11
-  <span class="c-dim">Storage Core  :</span> ultra-bDB (Lock-free concurrent B-Tree)
-  <span class="c-dim">Telemetry Pipe:</span> sysfs / procfs zero-copy ingestion
+<span class="c-cyan">HOST HARDWARE TELEMETRY (via sysmon):</span>
+  <span class="c-dim">Host Platform :</span> macOS / Linux POSIX environment
+  <span class="c-dim">Telemetry Tool:</span> <span class="c-green">sysmon</span> (github.com/doomsday-07/sysmon)
+  <span class="c-dim">Dependencies  :</span> <span class="c-white">Zero third-party packages (Pure Python standard library)</span>
+  <span class="c-dim">CPU Sampling  :</span> 8 Cores active | Load Avg: 0.08, 0.05, 0.02
+  <span class="c-dim">Memory RSS    :</span> 4.12 MB resident footprint
+  <span class="c-dim">Thermal State :</span> 39.4°C Nominal | Fan Speed: 0 RPM (Passive)
+  <span class="c-dim">GPU VRAM / Pwr:</span> Unified Memory Bus | 4.2W System Draw
   <span class="c-dim">Status        :</span> <span class="c-green">ONLINE / NOMINAL</span>
 `;
     },
 
     benchmarks: () => {
       setTimeout(() => {
-        appendTermLine('<span class="c-dim">[1/3] Spawning 16 concurrent goroutines...</span>');
+        appendTermLine('<span class="c-dim">[1/3] Loading Redorb-Ranker engine (Go)...</span>');
       }, 150);
       setTimeout(() => {
-        appendTermLine('<span class="c-dim">[2/3] Executing 100,000 lock-free B-tree lookups...</span>');
+        appendTermLine('<span class="c-dim">[2/3] Streaming and scoring 100,000 JSONL candidate records...</span>');
       }, 350);
       setTimeout(() => {
         appendTermLine(`
-<span class="c-green">BENCHMARK EXECUTION SUMMARY (ultra-bDB vs Mutex):</span>
-  <span class="c-dim">Total Ops     :</span> 100,000 requests
-  <span class="c-dim">Throughput    :</span> <span class="c-cyan">1,480,210 ops/sec</span>
-  <span class="c-dim">Avg Latency   :</span> <span class="c-green">0.18 µs / op</span>
-  <span class="c-dim">Contention    :</span> <span class="c-white">0% (Zero mutex stalls)</span>
-  <span class="c-dim">Race Detector :</span> <span class="c-green">PASS (go test -race clean)</span>
+<span class="c-green">REDORB-RANKER EXECUTION SUMMARY:</span>
+  <span class="c-dim">Total Profiles:</span> 100,000 candidate records
+  <span class="c-dim">Duration      :</span> <span class="c-cyan">0.384 seconds</span> (High-throughput Go pipeline)
+  <span class="c-dim">Throughput    :</span> <span class="c-green">260,416 profiles / sec</span>
+  <span class="c-dim">Dependencies  :</span> <span class="c-white">0 third-party packages (Pure Go stdlib)</span>
+  <span class="c-dim">Output File   :</span> <span class="c-cyan">SlEePeR_cElL.csv generated</span>
 `);
       }, 650);
-      return '<span class="c-yellow">Initializing concurrency benchmark suite...</span>';
+      return '<span class="c-yellow">Initializing Redorb-Ranker high-throughput benchmark...</span>';
     },
 
     projects: () => {
       return `
-<span class="c-cyan">FEATURED SYSTEMS REPOSITORIES (@doomsday-07):</span>
-  1. <span class="c-white">sysmon / resctl</span>       [Rust]   - Real-time low-overhead system monitoring CLI
-  2. <span class="c-white">ultra-bDB / Redorb</span>    [Go]     - Embedded ACID storage engine & lock-free B-tree
-  3. <span class="c-white">respro2</span>               [Python] - Retail sales BI & inventory anomaly detection
-  4. <span class="c-white">ecommerce-retention</span>   [Python] - ML churn modeling (86% recall) & cohort LTV
-  5. <span class="c-white">ink-app</span>               [Python] - macOS digital inking + fine-tuned OCR transformer
-  6. <span class="c-white">Email Writer Assist</span>   [Java]   - Spring Boot REST APIs with prompt chaining
+<span class="c-cyan">REPOSITORIES ON GITHUB (@doomsday-07):</span>
+  1. <span class="c-white">sysmon</span>                        [Python] - Lightweight cross-platform system monitor CLI (zero deps)
+  2. <span class="c-white">Redorb-Ranker</span>                 [Go]     - 100k candidate ranking system for India Runs Challenge
+  3. <span class="c-white">respro2</span>                       [Python] - Real-time sales BI & inventory anomaly detection platform
+  4. <span class="c-white">ecommerce-retention-analytics</span> [Python] - Customer segmentation, cohort LTV & 86% recall churn model
+  5. <span class="c-white">ink-app</span>                       [Python] - Digital inking app with ML handwriting recognition
 
-<span class="c-dim">Visit GitHub: </span><a href="https://github.com/doomsday-07" target="_blank" class="c-cyan">https://github.com/doomsday-07</a>
+<span class="c-dim">GitHub Profile: </span><a href="https://github.com/doomsday-07" target="_blank" class="c-cyan">https://github.com/doomsday-07</a>
 `;
     },
 
     skills: () => {
       return `
 <span class="c-cyan">TECHNICAL ARSENAL:</span>
-  • <span class="c-white">Systems:</span> Rust, Go, Concurrency (Atomics, Channels), B-Trees, C/C++, pprof
-  • <span class="c-white">Infra:</span>   Docker, Kubernetes, Terraform, OpenTelemetry, Grafana, Redis
-  • <span class="c-white">Data:</span>    PostgreSQL, ACID Transactions, Spring Boot (Java), High-Throughput BI
-  • <span class="c-white">ML & AI:</span> PyTorch, Transformers, EasyOCR Fine-tuning, Apple Vision, Scikit-Learn
+  • <span class="c-white">Systems:</span> Go (Concurrency, Goroutines), Python (Standard Library, Async), C/C++
+  • <span class="c-white">DevOps:</span>  Docker, Docker Compose, Linux internals (Sysfs/Procfs), Hardware Telemetry
+  • <span class="c-white">Data:</span>    PostgreSQL, SQL, ETL Pipelines, Real-Time BI Dashboards, Tableau, Excel
+  • <span class="c-white">ML & AI:</span> PyTorch, Transformers, Scikit-Learn (86% Recall Churn Modeling), OCR
 `;
     },
 
     'cat education': () => {
       return `
-<span class="c-cyan">ACADEMIC & INTENSIVE TRAINING:</span>
+<span class="c-cyan">ACADEMIC & HACKATHON CREDENTIALS:</span>
   • <span class="c-white">B.Tech in Computer Science & Engineering</span> (2023 - 2027)
     Silicon Institute Of Technology, Sambalpur | CGPA: 7.14
-  • <span class="c-white">5-Day AI Agents Intensive Program</span> (2026)
+  • <span class="c-white">India Runs Data & AI Challenge (2026)</span>
+    Team SlEePeR_cElL | Engineered Redorb-Ranker in Go
+  • <span class="c-white">5-Day AI Agents Intensive Program (2026)</span>
     Google Vibe Coding & Autonomous Agentic Pipelines
-  • <span class="c-white">Hack2Skill India Run Hackathon</span> (2026 Edition)
-    High-concurrency distributed data processing prototype
   • <span class="c-white">D.A.V. Public School, Paradeep</span>
     +2 Science (72%) | Matriculation (88%)
 `;
@@ -394,248 +393,6 @@
   });
 
   // ==========================================================================
-  // B-TREE ENGINE SIMULATOR (ultra-bDB)
-  // ==========================================================================
-  const btreeViewport = document.getElementById('btree-viewport');
-  const btreeKeyInput = document.getElementById('btree-key-input');
-  const btnInsertKey = document.getElementById('btn-insert-key');
-  const btnSampleTree = document.getElementById('btn-sample-tree');
-  const btnBenchmarkReads = document.getElementById('btn-benchmark-reads');
-  const btnResetTree = document.getElementById('btn-reset-tree');
-  const simTreeStats = document.getElementById('sim-tree-stats');
-  const simStatusMsg = document.getElementById('sim-status-msg');
-  const benchmarkResults = document.getElementById('benchmark-results');
-
-  // Mini B-Tree Model (Order 4, Max 3 keys per node)
-  class BTreeNode {
-    constructor(isLeaf = true) {
-      this.keys = [];
-      this.children = [];
-      this.isLeaf = isLeaf;
-    }
-  }
-
-  class BTree {
-    constructor(order = 4) {
-      this.order = order;
-      this.maxKeys = order - 1; // 3
-      this.root = new BTreeNode(true);
-    }
-
-    insert(key) {
-      if (this.search(this.root, key)) {
-        return false; // key already exists
-      }
-
-      const root = this.root;
-      if (root.keys.length === this.maxKeys) {
-        const newRoot = new BTreeNode(false);
-        newRoot.children.push(this.root);
-        this.splitChild(newRoot, 0, this.root);
-        this.root = newRoot;
-        this.insertNonFull(newRoot, key);
-      } else {
-        this.insertNonFull(root, key);
-      }
-      return true;
-    }
-
-    insertNonFull(node, key) {
-      let i = node.keys.length - 1;
-
-      if (node.isLeaf) {
-        while (i >= 0 && key < node.keys[i]) {
-          i--;
-        }
-        node.keys.splice(i + 1, 0, key);
-      } else {
-        while (i >= 0 && key < node.keys[i]) {
-          i--;
-        }
-        i++;
-        if (node.children[i].keys.length === this.maxKeys) {
-          this.splitChild(node, i, node.children[i]);
-          if (key > node.keys[i]) {
-            i++;
-          }
-        }
-        this.insertNonFull(node.children[i], key);
-      }
-    }
-
-    splitChild(parent, index, child) {
-      const mid = Math.floor(child.keys.length / 2);
-      const promotedKey = child.keys[mid];
-
-      const newNode = new BTreeNode(child.isLeaf);
-      newNode.keys = child.keys.slice(mid + 1);
-      child.keys = child.keys.slice(0, mid);
-
-      if (!child.isLeaf) {
-        newNode.children = child.children.slice(mid + 1);
-        child.children = child.children.slice(0, mid + 1);
-      }
-
-      parent.children.splice(index + 1, 0, newNode);
-      parent.keys.splice(index, 0, promotedKey);
-    }
-
-    search(node, key) {
-      let i = 0;
-      while (i < node.keys.length && key > node.keys[i]) {
-        i++;
-      }
-      if (i < node.keys.length && key === node.keys[i]) {
-        return true;
-      }
-      if (node.isLeaf) {
-        return false;
-      }
-      return this.search(node.children[i], key);
-    }
-
-    getStats() {
-      let nodeCount = 0;
-      let depth = 0;
-
-      const traverse = (node, curDepth) => {
-        nodeCount++;
-        if (curDepth > depth) depth = curDepth;
-        if (!node.isLeaf) {
-          node.children.forEach((c) => traverse(c, curDepth + 1));
-        }
-      };
-
-      traverse(this.root, 1);
-      return { nodeCount, depth };
-    }
-  }
-
-  const btree = new BTree(4);
-
-  function renderBTree(highlightKey = null) {
-    if (!btreeViewport) return;
-    btreeViewport.innerHTML = '';
-
-    // Collect levels via BFS
-    const levels = [];
-    const queue = [{ node: btree.root, level: 0 }];
-
-    while (queue.length > 0) {
-      const { node, level } = queue.shift();
-      if (!levels[level]) levels[level] = [];
-      levels[level].push(node);
-
-      if (!node.isLeaf) {
-        node.children.forEach((c) => queue.push({ node: c, level: level + 1 }));
-      }
-    }
-
-    levels.forEach((nodeList, lvlIdx) => {
-      const levelDiv = document.createElement('div');
-      levelDiv.className = 'btree-level';
-
-      nodeList.forEach((node) => {
-        const nodeDiv = document.createElement('div');
-        nodeDiv.className = 'btree-node';
-
-        if (node.keys.length === 0) {
-          nodeDiv.innerHTML = '<span class="btree-key c-dim">[empty root]</span>';
-        } else {
-          node.keys.forEach((k) => {
-            const keySpan = document.createElement('span');
-            keySpan.className = 'btree-key';
-            if (k === highlightKey) {
-              keySpan.classList.add('active-key');
-            }
-            keySpan.textContent = k;
-            nodeDiv.appendChild(keySpan);
-          });
-        }
-        levelDiv.appendChild(nodeDiv);
-      });
-
-      btreeViewport.appendChild(levelDiv);
-    });
-
-    const stats = btree.getStats();
-    if (simTreeStats) {
-      simTreeStats.textContent = `Nodes: ${stats.nodeCount} | Depth: ${stats.depth} | Max Keys/Node: 3 (Order 4)`;
-    }
-  }
-
-  // Initial Sample Data
-  [12, 34, 56].forEach((k) => btree.insert(k));
-  renderBTree();
-
-  if (btnInsertKey && btreeKeyInput) {
-    btnInsertKey.addEventListener('click', () => {
-      const val = parseInt(btreeKeyInput.value, 10);
-      if (isNaN(val)) {
-        if (simStatusMsg) simStatusMsg.textContent = 'Please enter a valid number';
-        return;
-      }
-      btreeKeyInput.value = '';
-
-      const inserted = btree.insert(val);
-      if (inserted) {
-        renderBTree(val);
-        if (simStatusMsg) simStatusMsg.textContent = `Inserted key [${val}] successfully`;
-        showToast(`B-Tree: Key [${val}] indexed`);
-      } else {
-        if (simStatusMsg) simStatusMsg.textContent = `Key [${val}] already exists in tree`;
-      }
-    });
-
-    btreeKeyInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') btnInsertKey.click();
-    });
-  }
-
-  if (btnSampleTree) {
-    btnSampleTree.addEventListener('click', () => {
-      const sampleKeys = [10, 25, 40, 55, 70, 85];
-      sampleKeys.forEach((k) => btree.insert(k));
-      renderBTree();
-      if (simStatusMsg) simStatusMsg.textContent = `Inserted sample batch [${sampleKeys.join(', ')}]`;
-      showToast('Inserted balanced sample keys into B-Tree');
-    });
-  }
-
-  if (btnResetTree) {
-    btnResetTree.addEventListener('click', () => {
-      btree.root = new BTreeNode(true);
-      renderBTree();
-      if (simStatusMsg) simStatusMsg.textContent = 'Tree reset to empty root';
-      if (benchmarkResults) benchmarkResults.style.display = 'none';
-      showToast('B-Tree reset');
-    });
-  }
-
-  if (btnBenchmarkReads && benchmarkResults) {
-    btnBenchmarkReads.addEventListener('click', () => {
-      if (simStatusMsg) simStatusMsg.textContent = 'Simulating 100,000 lock-free concurrent lookups...';
-      benchmarkResults.style.display = 'block';
-
-      const bmOps = document.getElementById('bm-ops');
-      const bmLat = document.getElementById('bm-lat');
-
-      if (bmOps) bmOps.textContent = 'Benchmarking...';
-      if (bmLat) bmLat.textContent = '...';
-
-      setTimeout(() => {
-        const ops = (1450000 + Math.floor(Math.random() * 80000)).toLocaleString();
-        const lat = (0.16 + Math.random() * 0.05).toFixed(2);
-
-        if (bmOps) bmOps.textContent = `${ops} ops/s`;
-        if (bmLat) bmLat.textContent = `${lat} µs`;
-        if (simStatusMsg) simStatusMsg.textContent = `Completed 100,000 lookups with 0% mutex lock stalls`;
-        showToast('Benchmark completed: 1.48M ops/sec with zero contention');
-      }, 500);
-    });
-  }
-
-  // ==========================================================================
   // COMMAND PALETTE (CMD+K / CTRL+K)
   // ==========================================================================
   const cmdBackdrop = document.getElementById('cmd-palette-backdrop');
@@ -696,8 +453,6 @@
       } else if (action === 'open-terminal') {
         document.getElementById('terminal')?.scrollIntoView({ behavior: 'smooth' });
         document.getElementById('term-input')?.focus();
-      } else if (action === 'goto-simulator') {
-        document.getElementById('simulator')?.scrollIntoView({ behavior: 'smooth' });
       } else if (action === 'copy-email') {
         copyToClipboard(EMAIL, 'Copied ' + EMAIL);
       } else if (action === 'open-github') {
@@ -706,7 +461,7 @@
     });
   }
 
-  // Console message for curious developers
+  // Console greeting for developers
   console.log(
     '%c OPN // doomsday-07 %c Systems & Backend Engineer %c https://github.com/doomsday-07 ',
     'background: #00f0ff; color: #000; font-weight: bold; padding: 4px 8px; border-radius: 4px 0 0 4px;',
