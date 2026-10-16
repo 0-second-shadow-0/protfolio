@@ -99,16 +99,40 @@
   const navMenu = document.getElementById('nav-menu');
 
   if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('mobile-open');
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = navMenu.classList.toggle('mobile-open');
+      mobileToggle.classList.toggle('open', isOpen);
     });
 
     navMenu.querySelectorAll('.nav-link').forEach((link) => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('mobile-open');
+        mobileToggle.classList.remove('open');
       });
     });
+
+    // Close when tapping outside
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navMenu.classList.remove('mobile-open');
+        mobileToggle.classList.remove('open');
+      }
+    });
   }
+
+  // Responsive Terminal Prompt Adaptation
+  const termPromptSymbol = document.querySelector('.term-prompt-symbol');
+  function updateResponsivePrompt() {
+    if (!termPromptSymbol) return;
+    if (window.innerWidth <= 480) {
+      termPromptSymbol.textContent = 'opn:~$';
+    } else {
+      termPromptSymbol.textContent = 'opn@carbon:~$';
+    }
+  }
+  window.addEventListener('resize', updateResponsivePrompt);
+  updateResponsivePrompt();
 
   // Scroll Spy for Header Active Link
   const sections = document.querySelectorAll('section[id]');
