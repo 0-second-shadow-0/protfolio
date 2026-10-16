@@ -219,8 +219,8 @@
       return `
 <span class="c-cyan">AVAILABLE DATA & SYSTEMS COMMANDS:</span>
   <span class="c-yellow">sysinfo</span>      - Inspect hardware telemetry & analytical runtime stats
-  <span class="c-yellow">benchmarks</span>   - Run simulated Star Schema SQL aggregation & Go ranker
-  <span class="c-yellow">projects</span>     - List all 5 verified repositories on @doomsday-07
+  <span class="c-yellow">benchmarks</span>   - Run simulated Star Schema SQL aggregation & churn ML
+  <span class="c-yellow">projects</span>     - List all 4 verified repositories on @doomsday-07
   <span class="c-yellow">skills</span>       - Print analytical and systems technical matrix
   <span class="c-yellow">cat education</span>- View chronological degrees and hackathons
   <span class="c-yellow">contact</span>      - Output communication channels
@@ -238,7 +238,7 @@
   <span class="c-dim">Data Engines  :</span> PostgreSQL 16 | Star Schema Data Marts | DuckDB
   <span class="c-dim">BI & Viz      :</span> Tableau 2024.1 | Power BI (25+ DAX Measures) | Excel Models
   <span class="c-dim">Python Stack  :</span> Pandas | NumPy | Scikit-Learn | FastAPI | PyTorch
-  <span class="c-dim">Systems Stack :</span> Go (Pure Stdlib) | C/C++ | Hardware Telemetry (sysmon)
+  <span class="c-dim">Systems Stack :</span> Python Standard Library | C/C++ | Hardware Telemetry (sysmon)
   <span class="c-dim">Status        :</span> <span class="c-green">ONLINE / NOMINAL</span>
 `;
     },
@@ -251,15 +251,16 @@
         appendTermLine('<span class="c-green">✓ Star Schema Query: GMROI & 14-day Rolling Z-Scores computed in 0.041s (PostgreSQL CTEs).</span>');
       }, 350);
       setTimeout(() => {
-        appendTermLine('<span class="c-dim">[2/2] Streaming and ranking 100,000 JSONL candidates via Redorb-Ranker (Go)...</span>');
+        appendTermLine('<span class="c-dim">[2/2] Evaluating RFM 5-quintile scoring & churn prediction model (ecommerce-retention-analytics)...</span>');
       }, 500);
       setTimeout(() => {
         appendTermLine(`
 <span class="c-green">BENCHMARK EXECUTION SUMMARY:</span>
-  <span class="c-dim">Dataset Scale :</span> 100,000+ Transactions & Candidate Records
-  <span class="c-dim">Go Ranking Run:</span> <span class="c-cyan">0.384 seconds</span> (260,416 profiles / sec)
+  <span class="c-dim">Dataset Scale :</span> 100,000+ Transactions & Customer Records
+  <span class="c-dim">SQL Query Run :</span> <span class="c-cyan">0.041 seconds</span> (Star Schema CTE rolling aggregation)
   <span class="c-dim">Churn Model   :</span> <span class="c-green">86% Recall</span> on High-Risk Attrition Identification
-  <span class="c-dim">Dependencies  :</span> Zero third-party packages in Go ranker & sysmon CLI
+  <span class="c-dim">DAX Measures  :</span> 25+ Production calculations in Power BI model
+  <span class="c-dim">Telemetry     :</span> Zero external dependencies in sysmon CLI
 `);
       }, 750);
       return '<span class="c-yellow">Initializing Analytics & Systems benchmark test...</span>';
@@ -270,9 +271,8 @@
 <span class="c-cyan">ACTIVE REPOSITORIES ON GITHUB (@doomsday-07):</span>
   1. <span class="c-white">respro2</span>                       [Python/SQL] - Real-time Retail BI, Star Schema, GMROI & Anomaly Detection
   2. <span class="c-white">ecommerce-retention-analytics</span> [Python/PBI] - 100k+ Transaction RFM Segmentation, 25+ DAX, 86% Recall Churn
-  3. <span class="c-white">Redorb-Ranker</span>                 [Go]         - 100k candidate ranker in pure Go for India Runs Challenge
-  4. <span class="c-white">sysmon</span>                        [Python]     - Cross-platform system telemetry monitor (zero external deps)
-  5. <span class="c-white">ink-app</span>                       [Python/ML]  - Low-latency digital inking with ML handwriting OCR pipeline
+  3. <span class="c-white">sysmon</span>                        [Python]     - Cross-platform system telemetry monitor (zero external deps)
+  4. <span class="c-white">ink-app</span>                       [Python/ML]  - Low-latency digital inking with ML handwriting OCR pipeline
 
 <span class="c-dim">GitHub Profile: </span><a href="https://github.com/doomsday-07" target="_blank" class="c-cyan">https://github.com/doomsday-07</a>
 `;
@@ -286,9 +286,9 @@
                           RFM Segmentation, Cohort Retention Curves, Retail KPIs (GMROI, Sell-Through)
   • <span class="c-white">Machine Learning    :</span> Scikit-Learn (Logistic Regression, Random Forest, 86% Recall Churn),
                           Pandas, NumPy, EDA, PyTorch, Optical Character Recognition
-  • <span class="c-white">Systems & Software  :</span> Go (Concurrency, Goroutines, Channels, Zero-Deps), Python (Stdlib),
-                          High-Throughput Streaming, C/C++, Hardware Telemetry (sysmon)
-  • <span class="c-white">Cloud & ETL         :</span> Python ETL Pipelines, FastAPI, Docker, Docker Compose, Linux internals
+  • <span class="c-white">Systems & Software  :</span> Python Standard Library (Zero-Dependency Tooling in sysmon),
+                          Hardware Telemetry (CPU, GPU, VRAM, Power), C/C++, Linux POSIX Interfaces
+  • <span class="c-white">Cloud & ETL         :</span> Python ETL Pipelines, FastAPI, Docker, Docker Compose, Data Mart Storage
 `;
     },
 
@@ -302,7 +302,7 @@
   3. <span class="c-white">B.Tech in Computer Science & Engineering</span> [2023 - 2027 (Expected)]
      Silicon Institute Of Technology, Sambalpur | CGPA: 7.14
   4. <span class="c-white">India Runs Data & AI Challenge</span> [2026]
-     Team SlEePeR_cElL | Engineered Redorb-Ranker in Go for Redrob AI
+     Team SlEePeR_cElL | Redrob AI National Challenge
   5. <span class="c-white">5-Day AI Agents Intensive Program</span> [2026]
      Google Vibe Coding & Autonomous Agentic Workflows
 `;

@@ -4,7 +4,7 @@
 > **Direct Contact**: [omprasadnayak7@gmail.com](mailto:omprasadnayak7@gmail.com)  
 > **LinkedIn**: [linkedin.com/in/om-prasad-nayak-5b713a294](https://www.linkedin.com/in/om-prasad-nayak-5b713a294)
 
-High-performance portfolio highlighting end-to-end **Business Intelligence & Data Analytics** (Advanced SQL, Star Schemas, Power BI DAX, Tableau, RFM Segmentation, 86% Recall Churn Modeling) and **Systems Software** in Go and Python.
+High-performance portfolio highlighting end-to-end **Business Intelligence & Data Analytics** (Advanced SQL, Star Schemas, Power BI DAX, Tableau, RFM Segmentation, 86% Recall Churn Modeling) and **Systems Software** in Python.
 
 ---
 
@@ -23,17 +23,12 @@ High-performance portfolio highlighting end-to-end **Business Intelligence & Dat
    - Machine learning churn prediction models (Logistic Regression & Random Forest) calibrated for **86% high-risk attrition recall**.
    - Enterprise Power BI Star Schema data model with **25+ production DAX measures** tracking cohort retention decay curves, Net Revenue Retention (NRR), and Average Order Value (AOV).
 
-3. **[Redorb-Ranker](https://github.com/doomsday-07/Redorb-Ranker)** *(Go, Docker)*  
-   **High-Throughput Candidate Ranking Engine (India Runs Data & AI Challenge)**  
-   - Engineered in pure Go standard library (zero third-party dependencies) for Team SlEePeR_cElL.
-   - Streams, evaluates, and ranks **100,000 JSONL candidate profiles** against role criteria with sub-second execution speed.
-
-4. **[sysmon](https://github.com/doomsday-07/sysmon)** *(Python)*  
+3. **[sysmon](https://github.com/doomsday-07/sysmon)** *(Python)*  
    **Lightweight Cross-Platform Hardware Telemetry Monitor**  
    - Samples CPU, memory, disk I/O, thermal sensors, GPU VRAM, battery health, and power usage.
    - Zero external dependencies — built entirely on the Python standard library with cross-platform support (macOS, Linux, Windows).
 
-5. **[ink-app](https://github.com/doomsday-07/ink-app)** *(Python, Computer Vision)*  
+4. **[ink-app](https://github.com/doomsday-07/ink-app)** *(Python, Computer Vision)*  
    **Low-Latency Digital Inking & Handwriting Recognition**  
    - Stylus stroke rendering with pressure sensitivity and brush smoothing.
    - Integrated optical character recognition (OCR) machine learning pipeline for handwriting translation.
@@ -45,7 +40,7 @@ High-performance portfolio highlighting end-to-end **Business Intelligence & Dat
 1. **Secondary School Examination (Matriculation)** — 2021 | D.A.V. Public School, Paradeep (88%)
 2. **Higher Secondary School Certificate (+2 Science)** — 2021 — 2023 | D.A.V. Public School, Paradeep (72%)
 3. **B.Tech in Computer Science & Engineering** — 2023 — 2027 | Silicon Institute Of Technology, Sambalpur (CGPA: 7.14)
-4. **India Runs Data & AI Challenge** — 2026 | Team SlEePeR_cElL — Engineered Redorb-Ranker in Go
+4. **India Runs Data & AI Challenge** — 2026 | Team SlEePeR_cElL — Candidate evaluation & scoring algorithms
 5. **5-Day AI Agents Intensive Program** — 2026 | Google Vibe Coding & Agentic Systems
 
 ---
